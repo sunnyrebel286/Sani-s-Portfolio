@@ -425,23 +425,26 @@ span {
   .navbar {
     position: absolute;
     top: 100%;
-    left: 0;
+    left: -100;
     width: 100%;
     padding: 1rem 3%;
     background: var(--bg-color);
     border-top: 0.1rem solid rgba(0, 0, 0, 0.2);
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
     display: none;
+    transition: 0.3s;
   }
 
   .navbar.active {
     display: block;
+    left: 0;
   }
 
   .navbar a {
     display: block;
-    font-size: 2rem;
+    font-size: 2rem 0;
     margin: 3rem 0;
+    text-align: center;
   }
 
   .home {

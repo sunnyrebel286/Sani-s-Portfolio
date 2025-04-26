@@ -12,10 +12,10 @@
 }
 
 :root {
-  --bg-color: #191f36;
-  --snd-bg-color: #262840;
-  --text-color: #fff;
-  --main-color: #59b2f4;
+  --bg-color: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); /* Bright White to Light Sky Blue */
+  --snd-bg-color: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%); /* Light Blue to Pastel Blue */
+  --text-color: #96b8fc; /* Deep Slate Gray (for clear, strong text) */
+  --main-color: #1f1f1f; /* Soft Light Blue (for panels/cards) */
 }
 
 html {

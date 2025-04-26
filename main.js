@@ -21,7 +21,7 @@ window.onscroll = () => {
     let id = sec.getAttribute("id");
 
     if (top >= offset && top < offset + height) {
-      navLinks.forEach.apply((links) => {
+      navLinks.forEach((links) => {
         links.classList.remove("active");
         document
           .querySelector("header nav a[href*=" + id + "]")
@@ -47,8 +47,8 @@ ScrollReveal({
 });
 ScrollReveal().reveal(".home-content, heading", { origin: "top" });
 ScrollReveal().reveal(
-  ".home-img, .services-container, .portfolio-box, .contect form",
-  { origin: "buttom" }
+  ".home-img, .services-container, .portfolio-box, .contact form",
+  { origin: "bottom" }
 );
 ScrollReveal().reveal(".home-contact h1, .about-img", { origin: "left" });
 ScrollReveal().reveal(".home-contact p, .about-content", { origin: "right" });

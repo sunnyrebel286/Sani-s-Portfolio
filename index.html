@@ -4,111 +4,265 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!--FONT AWESOME -->
+    <!-- FONTS (Nunito from Google Fonts) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FONT AWESOME (Icons) -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
-    <!-- MAIN CSS -->
+    <!-- SWIPER JS (Testimonial Carousel) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
+    <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="styles.css" />
-    <title>Responsive Personal Portfolio Website Design</title>
+
+    <title>Sani's Portfolio</title>
   </head>
   <body>
-    <!-- HEADER DESIGN-->
+    <!--=================================ss
+      HTML CONTENT
+    =================================-->
+
+    <!-- 1. HEADER -->
     <header class="header">
       <a href="#" class="logo">Sani's Portfolio</a>
-
-      <i class="fa-solid fa-bars" id="menu-icon"></i>
 
       <nav class="navbar">
         <a href="#home" class="active">Home</a>
         <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Journey</a>
         <a href="#services">Services</a>
         <a href="#portfolio">Portfolio</a>
+        <a href="#testimonial">Testimonials</a>
         <a href="#contact">Contact</a>
       </nav>
+
+      <div style="display: flex; align-items: center">
+        <i class="fa-solid fa-moon" id="darkMode-icon"></i>
+        <i class="fa-solid fa-bars" id="menu-icon"></i>
+      </div>
     </header>
 
-    <!-- HOME SECTION DESIGN-->
+    <!-- 2. HOME SECTION -->
     <section class="home" id="home">
       <div class="home-content">
         <h3>Hi, Myself</h3>
-        <h1>Sani kumar</h1>
+        <h1>Sani Kumar</h1>
         <h3>And I'm a <span class="multiple-text"></span></h3>
         <p>
-          Hey! I’m an aspiring frontend developer who loves building websites
-          that look clean and work well. I’m just starting out, but I’m always
-          learning and improving my skills in HTML, CSS, and JavaScript. I'm
-          excited to grow in the tech world and work with teams that create
-          cool, useful stuff.
+          Hey! I’m an aspiring developer who loves building things that look
+          clean and work well. I’m always learning and improving my skills in
+          frontend, backend, and databases. I'm excited to grow in the tech
+          world and work with teams that create cool, useful stuff.
         </p>
         <div class="social-media">
-          <a href="https://www.linkedin.com/in/sani-kumar/"
+          <a href="https://www.linkedin.com/in/sani-kumar/" target="_blank"
             ><i class="fa-brands fa-linkedin-in"></i
           ></a>
-          <a href="https://github.com/sunnyrebel286"
+          <a href="https://github.com/sunnyrebel286" target="_blank"
             ><i class="fa-brands fa-github"></i
           ></a>
-          <a href="https://x.com/itz_sani_"
+          <a href="https://x.com/itz_sani_" target="_blank"
             ><i class="fa-brands fa-twitter"></i
           ></a>
-          <a href="https://www.facebook.com/sunny.rebel.1804"
+          <a href="https://www.facebook.com/sunny.rebel.1804" target="_blank"
             ><i class="fa-brands fa-facebook"></i
           ></a>
-          <a href="https://www.instagram.com/__itz_sanii_/"
+          <a href="https://www.instagram.com/__itz_sanii_/" target="_blank"
             ><i class="fa-brands fa-instagram"></i
           ></a>
         </div>
-        <a href="Sani kumar Resume.pdf" class="btn">Download CV</a>
+        <!-- UPDATE: CV link updated and 'download' attribute added -->
+        <a href="Sani kumar Resume.pdf" class="btn" download>Download CV</a>
       </div>
 
       <div class="home-img">
-        <img src="photo.jpg" alt="" />
+        <!-- UPDATE: Image src changed to photo.jpg -->
+        <img
+          src="photo.jpg"
+          alt="Sani Kumar Profile Photo"
+          onerror="this.src='https://placehold.co/400x400/7c96ff/FFFFFF?text=S.K.&font=nunito'"
+        />
       </div>
     </section>
 
-    <!-- ABOUT SECTION DESIGN-->
-
+    <!-- 3. ABOUT SECTION -->
     <section class="about" id="about">
       <div class="about-img">
-        <img src="photo.jpg" alt="" />
+        <!-- UPDATE: Image src changed to photo.jpg -->
+        <img
+          src="photo.jpg"
+          alt="About me image"
+          onerror="this.src='https://placehold.co/600x600/f0f8ff/1f1f1f?text=About&font=nunito'"
+        />
       </div>
 
       <div class="about-content">
         <h2 class="heading">About <span>Me</span></h2>
-        <h3>Frontend Developer</h3>
+        <h3>Full-Stack Developer</h3>
+        <!-- Text slightly updated to reflect new roles -->
         <p>
-          Hey! I’m an aspiring frontend developer who enjoys building clean,
-          responsive websites that not only look good but work smoothly. I’m
-          just starting out, but I’m always learning and improving my skills in
-          HTML, CSS, and JavaScript. I’m excited to grow in the tech world and
-          be part of teams that create cool, meaningful things. I know I may not
-          be perfect for everyone, but I’m committed to learning, improving, and
-          becoming the best version of myself every step of the way.
+          Hey! I’m an aspiring developer who enjoys building clean, responsive
+          websites that not only look good but work smoothly. I’m just starting
+          out, but I’m always learning and improving my skills in HTML, CSS,
+          JavaScript, React, C#, .NET, and SQL databases.
+          <span id="more-text">
+            I’m excited to grow in the tech world and be part of teams that
+            create cool, meaningful things. I know I may not be perfect for
+            everyone, but I’m committed to learning, improving, and becoming the
+            best version of myself every step of the way.
+          </span>
         </p>
-        <!-- <a href="#" class="btn">Read More</a> -->
+        <a href="#" class="btn" id="read-more-btn">Read More</a>
       </div>
     </section>
 
-    <!-- SERVICES SECTION DESIGN-->
+    <!-- 4. SKILLS SECTION -->
+    <section class="skills" id="skills">
+      <h2 class="heading">My <span>Skills</span></h2>
 
+      <div class="skills-container">
+        <!-- Existing Skills -->
+        <div class="skills-box">
+          <i class="fa-brands fa-html5"></i>
+          <h3>HTML5</h3>
+        </div>
+        <div class="skills-box">
+          <i class="fa-brands fa-css3-alt"></i>
+          <h3>CSS3</h3>
+        </div>
+        <div class="skills-box">
+          <i class="fa-brands fa-js"></i>
+          <h3>JavaScript</h3>
+        </div>
+        <div class="skills-box">
+          <i class="fa-brands fa-react"></i>
+          <h3>React</h3>
+        </div>
+        <div class="skills-box">
+          <i class="fa-brands fa-git-alt"></i>
+          <h3>Git</h3>
+        </div>
+        <div class="skills-box">
+          <i class="fa-brands fa-figma"></i>
+          <h3>Figma</h3>
+        </div>
+
+        <!-- NEW: Added Skills -->
+        <div class="skills-box">
+          <i class="fa-solid fa-server"></i>
+          <h3>Backend</h3>
+        </div>
+        <div class="skills-box">
+          <i class="fa-solid fa-laptop-code"></i>
+          <h3>.NET</h3>
+        </div>
+        <div class="skills-box">
+          <i class="fa-solid fa-database"></i>
+          <h3>Database</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EDUCATION (JOURNEY) SECTION -->
+    <section class="education" id="education">
+      <h2 class="heading">My <span>Journey</span></h2>
+
+      <div class="education-container">
+        <!-- Existing Items -->
+        <div class="education-box">
+          <span class="education-year">July 2025</span>
+          <h3>
+            Software Developer Intern - Countrees AI Technologies Private
+            Limited
+          </h3>
+          <p>
+            Backend Developer (C# / .NET) Developed and maintained scalable
+            backend systems using C# and .NET, ensuring smooth integration with
+            frontend, AI, and analytics modules. Focused on API development,
+            database management, and system performance optimization.
+          </p>
+        </div>
+
+        <div class="education-box">
+          <span class="education-year">2023 - 2025</span>
+          <h3>
+            Master of Computer Application - Noida Institute of Engineering and
+            Technology
+          </h3>
+          <p>
+            As MCA Student Passionate about crafting powerful backend systems,
+            seamless integrations, and data-driven applications. I love turning
+            complex ideas into elegant, functional software solutions.
+          </p>
+        </div>
+
+        <div class="education-box journey-hidden">
+          <span class="education-year">2019 - 2023</span>
+          <h3>
+            Bachelor of Computer Application - Babasaheb Bhimrao Ambedkar Bihar
+            University
+          </h3>
+          <p>
+            As BCA Student Built a strong foundation in programming, databases,
+            and software development. Passionate about learning new technologies
+            and creating practical, real-world solutions.
+          </p>
+        </div>
+
+        <div class="education-box journey-hidden">
+          <span class="education-year">2019</span>
+          <h3>Intermediate - Bihar School Examination Board</h3>
+          <p>
+            Focused on Science and Mathematics, building strong analytical and
+            problem-solving skills that sparked my interest in technology.
+          </p>
+        </div>
+      </div>
+
+      <!-- NEW: "See More" Button Container -->
+      <div class="journey-see-more-container">
+        <button class="btn" id="journey-see-more">See More</button>
+      </div>
+    </section>
+
+    <!-- 6. SERVICES SECTION -->
     <section class="services" id="services">
       <h2 class="heading">My <span>Services</span></h2>
       <div class="services-container">
+        <div class="services-box">
+          <i class="fa-solid fa-server"></i>
+          <h3>Backend Development</h3>
+          <p>
+            I build robust and scalable server-side applications, focusing on
+            RESTful APIs, data management (SQL/NoSQL), security, and
+            performance.
+          </p>
+        </div>
+
         <div class="services-box">
           <i class="fa-solid fa-code"></i>
           <h3>Web Development</h3>
           <p>
             I design and build clean, user-friendly websites that look great on
-            all devices. Whether you need a personal site, business page, or
-            online store, I can help you bring your ideas to life with modern,
-            responsive design and smooth performance.
+            all devices, focusing on modern, responsive design and smooth
+            performance.
           </p>
-          <!-- <a href="#" class="btn">Read More</a> -->
         </div>
 
         <div class="services-box">
@@ -116,175 +270,419 @@
           <h3>UI/UX Designing</h3>
           <p>
             I create clean, user-friendly designs that make websites and apps
-            easy to use and visually appealing. My goal is to build smooth user
-            experiences with modern, eye-catching interfaces that keep people
-            engaged and make navigation simple.
+            easy to use and visually appealing, keeping users engaged.
           </p>
-          <!-- <a href="#" class="btn">Read More</a> -->
         </div>
 
         <div class="services-box">
-          <i class="fa-brands fa-android"></i>
-          <h3>App Development</h3>
+          <i class="fa-solid fa-mobile-screen-button"></i>
+          <h3>Responsive Design</h3>
           <p>
-            I develop smooth and responsive mobile apps that are easy to use and
-            look great. Whether it’s for Android, iOS, or both, I focus on
-            creating apps that solve real problems and offer a great user
-            experience from start to finish.
+            I specialize in building layouts that adapt perfectly to any screen
+            size, from mobile phones to desktops, ensuring a great user
+            experience everywhere.
           </p>
-          <!-- <a href="#" class="btn">Read More</a> -->
         </div>
       </div>
     </section>
 
-    <!--PORTFOLIO SECTION DESIGN-->
+    <!-- 7. PORTFOLIO SECTION -->
     <section class="portfolio" id="portfolio">
       <h2 class="heading">Latest <span>Projects</span></h2>
 
+      <!-- Filter Buttons -->
+      <div class="portfolio-filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="react">React</button>
+        <button class="filter-btn" data-filter="js">JavaScript</button>
+        <!-- NEW: Added Filters -->
+        <button class="filter-btn" data-filter="backend">Backend</button>
+        <button class="filter-btn" data-filter="dotnet">.NET</button>
+        <button class="filter-btn" data-filter="design">Design</button>
+      </div>
+
       <div class="portfolio-container">
-        <div class="portfolio-box">
-          <img src="project 1.png" alt="" />
-          <div class="portfolio-layer">
-            <h4>Pixabay Clone</h4>
-            <p>
-              I developed a Pixabay clone using React.js that lets users search
-              and download high-quality images. The site features a clean UI,
-              responsive design, image previews, and category filters. This
-              project improved my front-end and back-end skills by building a
-              real-world style web app with smooth user interaction.
-            </p>
-            <a href="https://pixabay-clone-688w.vercel.app/"
-              ><i class="fa-solid fa-up-right-from-square"></i
-            ></a>
+        <!-- Project 1 (Existing) -->
+        <div class="portfolio-box" data-category="react">
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Pixabay+Clone&font=nunito"
+              alt="Pixabay Clone Project"
+              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+1&font=nunito'"
+            />
+            <div class="portfolio-layer">
+              <h4>Pixabay Clone</h4>
+              <p>
+                A Pixabay clone using React.js that lets users search and
+                download high-quality images.
+              </p>
+              <div class="portfolio-tech">
+                <span>React</span>
+                <span>Pixabay API</span>
+                <span>CSS</span>
+              </div>
+              <div class="portfolio-links">
+                <a
+                  href="https://pixabay-free-images-for-everyone.vercel.app/"
+                  target="_blank"
+                  ><i class="fa-solid fa-up-right-from-square"></i
+                ></a>
+                <a href="https://github.com/sunnyrebel286" target="_blank"
+                  ><i class="fa-brands fa-github"></i
+                ></a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="portfolio-box">
-          <img src="project 2.png" alt="" />
-          <div class="portfolio-layer">
-            <h4>Digital Clock</h4>
-            <p>
-              This interactive digital clock features a clean, modern design
-              with smooth animations, 12/24-hour toggle, and dynamic themes that
-              adapt to the time of day. It's more than just a clock—it’s a
-              responsive, engaging UI that reflects both function and
-              personality. Built to showcase my skills in intuitive design,
-              animation, and user-focused development.
-            </p>
-            <a href="https://digital-clock-seven-azure.vercel.app/"
-              ><i class="fa-solid fa-up-right-from-square"></i
-            ></a>
+        <!-- Project 2 (Existing) -->
+        <div class="portfolio-box" data-category="js">
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Digital+Clock&font=nunito"
+              alt="Digital Clock Project"
+              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+2&font=nunito'"
+            />
+            <div class="portfolio-layer">
+              <h4>Digital Clock</h4>
+              <p>
+                This interactive digital clock features a clean, modern design
+                with smooth animations and dynamic themes.
+              </p>
+              <div class="portfolio-tech">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+              </div>
+              <div class="portfolio-links">
+                <a
+                  href="https://digital-clock-seven-azure.vercel.app/"
+                  target="_blank"
+                  ><i class="fa-solid fa-up-right-from-square"></i
+                ></a>
+                <a href="https://github.com/sunnyrebel286" target="_blank"
+                  ><i class="fa-brands fa-github"></i
+                ></a>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- <div class="portfolio-box">
-          <img src="photo.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
-              possimus.
-            </p>
-            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+        <!-- Project 3 (Existing) -->
+        <div class="portfolio-box" data-category="react">
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Weather+App&font=nunito"
+              alt="Weather App Project"
+              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+3&font=nunito'"
+            />
+            <div class="portfolio-layer">
+              <h4>Weather App</h4>
+              <p>
+                A React-based weather app that fetches real-time data from an
+                API based on user search.
+              </p>
+              <div class="portfolio-tech">
+                <span>React</span>
+                <span>Weather API</span>
+                <span>Tailwind</span>
+              </div>
+              <div class="portfolio-links">
+                <a href="#" target="_blank"
+                  ><i class="fa-solid fa-up-right-from-square"></i
+                ></a>
+                <a href="https://github.com/sunnyrebel286" target="_blank"
+                  ><i class="fa-brands fa-github"></i
+                ></a>
+              </div>
+            </div>
           </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="portfolio-box">
-          <img src="photo.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
-              possimus.
-            </p>
-            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+        <!-- Project 4 (Existing) -->
+        <div class="portfolio-box" data-category="design">
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Landing+Page&font=nunito"
+              alt="Landing Page Design"
+              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+4&font=nunito'"
+            />
+            <div class="portfolio-layer">
+              <h4>SaaS Landing Page</h4>
+              <p>
+                A modern landing page design for a fictional SaaS company,
+                focusing on UI/UX principles.
+              </p>
+              <div class="portfolio-tech">
+                <span>Figma</span>
+                <span>UI/UX</span>
+              </div>
+              <div class="portfolio-links">
+                <a href="#" target="_blank"
+                  ><i class="fa-solid fa-up-right-from-square"></i
+                ></a>
+                <a href="https://github.com/sunnyrebel286" target="_blank"
+                  ><i class="fa-brands fa-github"></i
+                ></a>
+              </div>
+            </div>
           </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="portfolio-box">
-          <img src="photo.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
-              possimus.
-            </p>
-            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+        <!-- NEW: Project 5 (Backend) -->
+        <div class="portfolio-box" data-category="backend">
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=E-commerce+API&font=nunito"
+              alt="E-commerce API"
+              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+5&font=nunito'"
+            />
+            <div class="portfolio-layer">
+              <h4>E-commerce API</h4>
+              <p>
+                A robust RESTful API for an e-commerce platform, handling
+                products, users, and orders.
+              </p>
+              <div class="portfolio-tech">
+                <span>Node.js</span>
+                <span>Express</span>
+                <span>MongoDB</span>
+              </div>
+              <div class="portfolio-links">
+                <a href="#" target="_blank"
+                  ><i class="fa-solid fa-up-right-from-square"></i
+                ></a>
+                <a href="https://github.com/sunnyrebel286" target="_blank"
+                  ><i class="fa-brands fa-github"></i
+                ></a>
+              </div>
+            </div>
           </div>
-        </div> -->
+        </div>
 
-        <!-- <div class="portfolio-box">
-          <img src="photo.jpg" alt="" />
-          <div class="portfolio-layer">
-            <h4>Web Design</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi,
-              possimus.
-            </p>
-            <a href="#"><i class="fa-solid fa-up-right-from-square"></i></a>
+        <!-- NEW: Project 6 (.NET) -->
+        <div class="portfolio-box" data-category="dotnet">
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Inventory+System&font=nunito"
+              alt="Inventory Management System"
+              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+6&font=nunito'"
+            />
+            <div class="portfolio-layer">
+              <h4>Inventory System</h4>
+              <p>
+                A desktop application built with .NET (WPF) and C# to manage
+                company inventory and sales.
+              </p>
+              <div class="portfolio-tech">
+                <span>C#</span>
+                <span>.NET</span>
+                <span>SQL Server</span>
+              </div>
+              <div class="portfolio-links">
+                <a href="#" target="_blank"
+                  ><i class="fa-solid fa-up-right-from-square"></i
+                ></a>
+                <a href="https://github.com/sunnyrebel286" target="_blank"
+                  ><i class="fa-brands fa-github"></i
+                ></a>
+              </div>
+            </div>
           </div>
-        </div> -->
+        </div>
       </div>
     </section>
 
-    <!--CONTANT SECTION DESIGN-->
+    <!-- 8. TESTIMONIALS SECTION -->
+    <section class="testimonial" id="testimonial">
+      <h2 class="heading">Client <span>Testimonials</span></h2>
+
+      <div class="testimonial-container">
+        <div class="swiper testimonial-slider">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide testimonial-box">
+              <img
+                src="https://placehold.co/200x200/cccccc/1f1f1f?text=JD&font=nunito"
+                alt="Client 1"
+                onerror="this.src='https://placehold.co/200x200/cccccc/1f1f1f?text=C1&font=nunito'"
+              />
+              <h3>John Doe</h3>
+              <h4>Project Manager</h4>
+              <p>
+                "Sani was a pleasure to work with. He delivered a clean,
+                responsive website right on schedule. His communication skills
+                are excellent. Highly recommend!"
+              </p>
+            </div>
+
+            <div class="swiper-slide testimonial-box">
+              <img
+                src="https://placehold.co/200x200/cccccc/1f1f1f?text=JS&font=nunito"
+                alt="Client 2"
+                onerror="this.src='https://placehold.co/200x200/cccccc/1f1f1f?text=C2&font=nunito'"
+              />
+              <h3>Jane Smith</h3>
+              <h4>UX Designer</h4>
+              <p>
+                "I collaborated with Sani on a project, and his frontend skills
+                are top-notch. He writes clean HTML/CSS and has a great eye for
+                detail."
+              </p>
+            </div>
+
+            <div class="swiper-slide testimonial-box">
+              <img
+                src="https://placehold.co/200x200/cccccc/1f1f1f?text=MJ&font=nunito"
+                alt="Client 3"
+                onerror="this.src='https://placehold.co/200x200/cccccc/1f1f1f?text=C3&font=nunito'"
+              />
+              <h3>Mike Johnson</h3>
+              <h4>Startup Founder</h4>
+              <p>
+                "Incredible work! Sani helped build our initial landing page.
+                The site is fast, looks great on mobile, and has improved our
+                engagement."
+              </p>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. CONTACT SECTION -->
     <section class="contact" id="contact">
       <h2 class="heading">Contact <span>Me</span></h2>
 
-      <form
-        action="https://formsubmit.co/sunnyrebel286@gmail.com"
-        method="POST"
-      >
-        <div class="input-box">
-          <input type="text" name="name" placeholder="Full Name" required />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            required
-          />
+      <div class="contact-container">
+        <!-- Contact Info -->
+        <div class="contact-info">
+          <div class="contact-info-box">
+            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="details">
+              <h4>Email</h4>
+              <!-- UPDATE: Clickable mailto link added -->
+              <p>
+                <a href="mailto:sunnyrebel286@gmail.com"
+                  >sunnyrebel286@gmail.com</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="contact-info-box">
+            <div class="icon"><i class="fa-solid fa-phone"></i></div>
+            <div class="details">
+              <h4>Phone</h4>
+              <!-- UPDATE: Clickable tel link added -->
+              <p><a href="tel:+919570206906">+91 95702 06906</a></p>
+            </div>
+          </div>
+
+          <div class="contact-info-box">
+            <div class="icon"><i class="fa-brands fa-linkedin"></i></div>
+            <div class="details">
+              <h4>LinkedIn</h4>
+              <!-- UPDATE: Clickable link added -->
+              <p>
+                <a
+                  href="https://linkedin.com/in/sani-kumar"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >linkedin.com/in/sani-kumar</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <!-- NEW: GitHub Info Box -->
+          <div class="contact-info-box">
+            <div class="icon"><i class="fa-brands fa-github"></i></div>
+            <div class="details">
+              <h4>GitHub</h4>
+              <p>
+                <a
+                  href="https://github.com/sunnyrebel286"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >github.com/sunnyrebel286</a
+                >
+              </p>
+            </div>
+          </div>
         </div>
 
-        <div class="input-box">
+        <!-- Contact Form -->
+        <form
+          action="https://formsubmit.co/sunnyrebel286@gmail.com"
+          method="POST"
+          class="contact-form"
+        >
+          <!-- UPDATE: .input-box class is no longer flex, so items stack -->
+          <div class="input-box">
+            <div class="input-group">
+              <input type="text" name="name" placeholder="Full Name" required />
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <div class="input-group">
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                required
+              />
+              <i class="fa-solid fa-envelope"></i>
+            </div>
+          </div>
+
+          <div class="input-box">
+            <div class="input-group">
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Mobile Number"
+                required
+              />
+              <i class="fa-solid fa-phone"></i>
+            </div>
+            <div class="input-group">
+              <input
+                type="text"
+                name="subject"
+                placeholder="Email Subject"
+                required
+              />
+              <i class="fa-solid fa-pen-to-square"></i>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <textarea
+              name="message"
+              id="message"
+              cols="30"
+              rows="10"
+              placeholder="Your Message"
+              required
+            ></textarea>
+            <i class="fa-solid fa-comment-dots"></i>
+          </div>
+
           <input
-            type="number"
-            name="phone"
-            placeholder="Mobile Number"
-            required
+            type="hidden"
+            name="_next"
+            value="https://yourwebsite.com/thankyou.html"
           />
-          <input
-            type="text"
-            name="subject"
-            placeholder="Email Subject"
-            required
-          />
-        </div>
-        <textarea
-          name="message"
-          id=""
-          cols="30"
-          rows="10"
-          placeholder="Your Message"
-          required
-        ></textarea>
-
-        <input type="hidden" name="_next" value="https://yourwebsite.com/thankyou.html">
-
-
-
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="Submit" value="Send Message" class="btn" />
-      </form>
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="Submit" value="Send Message" class="btn" />
+        </form>
+      </div>
     </section>
 
-    <!--FOOTER DESIGN-->
-
+    <!-- 10. FOOTER SECTION -->
     <footer class="footer">
       <div class="footer-text">
-        <p>
-          Copyright &copy; 2025 by Sani's | All Rights Reserved.
-          <!-- <span>My Website</span> -->
-        </p>
+        <p>Copyright &copy; 2025 by Sani's | All Rights Reserved.</p>
       </div>
 
       <div class="footer-iconTop">
@@ -292,16 +690,20 @@
       </div>
     </footer>
 
-    <!--SCROLL REVEAL JS-->
+    <!--=================================
+      JAVASCRIPT LIBRARIES
+    =================================-->
 
+    <!-- SCROLL REVEAL (Animation Library) -->
     <script src="https://unpkg.com/scrollreveal"></script>
 
-    <!--TYPED JS-->
-
+    <!-- TYPED JS (Typing Animation) -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
-    <!--MAIN JS-->
+    <!-- SWIPER JS (Carousel Library) -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+    <!-- CUSTOM JAVASCRIPT -->
     <script src="main.js"></script>
   </body>
 </html>

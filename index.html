@@ -4,507 +4,724 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- FONTS (Nunito from Google Fonts) -->
+    <meta
+      name="description"
+      content="Sani Kumar's personal portfolio. A full-stack developer specializing in .NET, React, and creative web solutions."
+    />
+    <meta
+      name="keywords"
+      content="Sani Kumar, Full-Stack Developer, Backend Developer, React, .NET, C#, Portfolio, Web Developer"
+    />
+    <meta name="author" content="Sani Kumar" />
+
+    <meta property="og:title" content="Sani Kumar | Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Check out Sani's portfolio of creative and technical projects."
+    />
+    <meta
+      property="og:image"
+      content="https://placehold.co/1200x630/0D0B26/FF00A8?text=Sani+Kumar+Portfolio&font=inter"
+    />
+    <meta property="og:url" content="https://your-domain.com" />
+    <meta property="og:type" content="website" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>SK</text></svg>"
+    />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
 
-    <!-- FONT AWESOME (Icons) -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
 
-    <!-- SWIPER JS (Testimonial Carousel) -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
     />
 
-    <!-- CUSTOM CSS -->
     <link rel="stylesheet" href="styles.css" />
 
-    <title>Sani's Portfolio</title>
+    <title>Sani Kumar | Full-Stack Developer</title>
   </head>
   <body>
-    <!--=================================ss
-      HTML CONTENT
-    =================================-->
+    <div class="preloader">
+      <div class="preloader-text">
+        Loading<span class="preloader-dot">.</span>
+      </div>
+    </div>
 
-    <!-- 1. HEADER -->
+    <div class="aurora-container">
+      <div class="aurora-blob" data-aurora-blob></div>
+      <div class="aurora-blob" data-aurora-blob></div>
+      <div class="aurora-blob" data-aurora-blob></div>
+    </div>
+
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    <div class="scroll-progress-bar"></div>
+
     <header class="header">
-      <a href="#" class="logo">Sani's Portfolio</a>
+      <a href="#" class="logo" data-hoverable data-magnetic
+        >Sani's Portfolio<span class="logo-dot">.</span></a
+      >
 
-      <nav class="navbar">
-        <a href="#home" class="active">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#education">Journey</a>
-        <a href="#services">Services</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#testimonial">Testimonials</a>
-        <a href="#contact">Contact</a>
+      <nav class="navbar" id="navbar-menu">
+        <a href="#home" class="active" data-hoverable data-magnetic>Home</a>
+        <a href="#about" data-hoverable data-magnetic>About</a>
+        <a href="#github" data-hoverable data-magnetic>GitHub</a>
+        <a href="#skills" data-hoverable data-magnetic>Skills</a>
+        <a href="#services" data-hoverable data-magnetic>Services</a>
+        <a href="#portfolio" data-hoverable data-magnetic>Portfolio</a>
+        <a href="#education" data-hoverable data-magnetic>Journey</a>
+        <a href="#testimonial" data-hoverable data-magnetic>Testimonials</a>
+        <a href="#contact" data-hoverable data-magnetic>Contact</a>
       </nav>
 
-      <div style="display: flex; align-items: center">
-        <i class="fa-solid fa-moon" id="darkMode-icon"></i>
-        <i class="fa-solid fa-bars" id="menu-icon"></i>
+      <div class="header-right">
+        <button
+          id="darkMode-icon-btn"
+          aria-label="Toggle dark mode"
+          class="dark-mode-toggle-btn"
+          data-hoverable
+          data-magnetic
+        >
+          <i class="fa-solid fa-moon" id="darkMode-icon"></i>
+        </button>
+
+        <button
+          id="menu-icon"
+          class="menu-icon-btn"
+          aria-controls="navbar-menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+          data-hoverable
+          data-magnetic
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
     </header>
 
-    <!-- 2. HOME SECTION -->
     <section class="home" id="home">
       <div class="home-content">
         <h3>Hi, Myself</h3>
-        <h1>Sani Kumar</h1>
+        <h1 class="home-title">Sani Kumar</h1>
         <h3>And I'm a <span class="multiple-text"></span></h3>
         <p>
-          Hey! I’m an aspiring developer who loves building things that look
-          clean and work well. I’m always learning and improving my skills in
-          frontend, backend, and databases. I'm excited to grow in the tech
-          world and work with teams that create cool, useful stuff.
+          Aspiring full-stack developer merging backend logic with frontend
+          finesse. I build clean, high-performance web applications that solve
+          real problems and look great doing it.
         </p>
         <div class="social-media">
-          <a href="https://www.linkedin.com/in/sani-kumar/" target="_blank"
-            ><i class="fa-brands fa-linkedin-in"></i
+          <a
+            href="https://www.linkedin.com/in/sani-kumar/"
+            target="_blank"
+            aria-label="View Sani's LinkedIn Profile"
+            data-hoverable
+            data-magnetic
+            ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i
           ></a>
-          <a href="https://github.com/sunnyrebel286" target="_blank"
-            ><i class="fa-brands fa-github"></i
+          <a
+            href="https://github.com/sunnyrebel286"
+            target="_blank"
+            aria-label="View Sani's GitHub Profile"
+            data-hoverable
+            data-magnetic
+            ><i class="fa-brands fa-github" aria-hidden="true"></i
           ></a>
-          <a href="https://x.com/itz_sani_" target="_blank"
-            ><i class="fa-brands fa-twitter"></i
+          <a
+            href="https://x.com/itz_sani_"
+            target="_blank"
+            aria-label="View Sani's Twitter Profile"
+            data-hoverable
+            data-magnetic
+            ><i class="fa-brands fa-twitter" aria-hidden="true"></i
           ></a>
-          <a href="https://www.facebook.com/sunny.rebel.1804" target="_blank"
-            ><i class="fa-brands fa-facebook"></i
-          ></a>
-          <a href="https://www.instagram.com/__itz_sanii_/" target="_blank"
-            ><i class="fa-brands fa-instagram"></i
+          <a
+            href="https://www.instagram.com/__itz_sanii_/"
+            target="_blank"
+            aria-label="View Sani's Instagram Profile"
+            data-hoverable
+            data-magnetic
+            ><i class="fa-brands fa-instagram" aria-hidden="true"></i
           ></a>
         </div>
-        <!-- UPDATE: CV link updated and 'download' attribute added -->
-        <a href="Sani kumar Resume.pdf" class="btn" download>Download CV</a>
+        <a
+          href="Sani kumar Resume.pdf"
+          class="btn"
+          download
+          data-hoverable
+          data-magnetic
+          >Download CV <i class="fa-solid fa-download" aria-hidden="true"></i
+        ></a>
       </div>
 
-      <div class="home-img">
-        <!-- UPDATE: Image src changed to photo.jpg -->
-        <img
-          src="photo.jpg"
-          alt="Sani Kumar Profile Photo"
-          onerror="this.src='https://placehold.co/400x400/7c96ff/FFFFFF?text=S.K.&font=nunito'"
-        />
+      <div class="home-img-3d-wrapper" data-tilt>
+        <div class="home-img">
+          <img
+            src="photo.jpg"
+            alt="Sani Kumar Profile Photo"
+            onerror="this.src='https://placehold.co/400x400/FF00A8/0D0B26?text=SK&font=inter'"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="home-stats">
+        <div class="stat-box">
+          <h3>2+</h3>
+          <p>Years of<br />Learning</p>
+        </div>
+        <div class="stat-box">
+          <h3>12+</h3> <p>Projects<br />Completed</p>
+        </div>
+        <div class="stat-box" id="github-stars-stat">
+          <h3 id="github-stars-count">...</h3>
+          <p>GitHub<br />Stars Earned</p>
+        </div>
       </div>
     </section>
 
-    <!-- 3. ABOUT SECTION -->
     <section class="about" id="about">
       <div class="about-img">
-        <!-- UPDATE: Image src changed to photo.jpg -->
         <img
           src="photo.jpg"
-          alt="About me image"
-          onerror="this.src='https://placehold.co/600x600/f0f8ff/1f1f1f?text=About&font=nunito'"
+          alt="A professional photo of Sani Kumar"
+          onerror="this.src='https://placehold.co/600x600/0D0B26/00E0FF?text=About&font=inter'"
+          loading="lazy"
         />
       </div>
 
       <div class="about-content">
         <h2 class="heading">About <span>Me</span></h2>
         <h3>Full-Stack Developer</h3>
-        <!-- Text slightly updated to reflect new roles -->
-        <p>
-          Hey! I’m an aspiring developer who enjoys building clean, responsive
-          websites that not only look good but work smoothly. I’m just starting
-          out, but I’m always learning and improving my skills in HTML, CSS,
-          JavaScript, React, C#, .NET, and SQL databases.
-          <span id="more-text">
-            I’m excited to grow in the tech world and be part of teams that
-            create cool, meaningful things. I know I may not be perfect for
-            everyone, but I’m committed to learning, improving, and becoming the
-            best version of myself every step of the way.
-          </span>
-        </p>
-        <a href="#" class="btn" id="read-more-btn">Read More</a>
+
+        <div class="about-toggles" data-hoverable>
+          <button
+            class="about-toggle-btn active"
+            data-target="philosophy"
+            data-magnetic
+          >
+            My Philosophy
+          </button>
+          <button class="about-toggle-btn" data-target="mission" data-magnetic>
+            My Mission
+          </button>
+        </div>
+
+        <div class="about-text-content">
+          <p id="philosophy-text" class="about-text show">
+            I believe in the power of clean code and intuitive design. For me,
+            development isn't just about making things work; it's about
+            building solutions that are scalable, maintainable, and a pleasure
+            to use. I'm driven by curiosity and a passion for learning new
+            technologies.
+          </p>
+          <p id="mission-text" class="about-text">
+            My mission is to grow as a developer and contribute to meaningful
+            projects. I'm committed to improving my skills in C#, .NET, React,
+            and SQL, and I'm excited to collaborate with teams that create
+            impactful, real-world applications.
+          </p>
+        </div>
+        <a href="#contact" class="btn" data-hoverable data-magnetic
+          >Let's Talk</a
+        >
       </div>
     </section>
 
-    <!-- 4. SKILLS SECTION -->
+    <section class="github" id="github">
+      <h2 class="heading">My <span>GitHub</span> Activity</h2>
+      <div class="github-stats-container">
+        <div
+          class="github-stat-card glass-card"
+          id="github-user-card"
+          data-hoverable
+        >
+          <div class="loader"></div>
+        </div>
+        <div class="github-stat-card glass-card" data-hoverable>
+          <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+          <h3 id="github-repo-count">...</h3>
+          <p>Public Repositories</p>
+        </div>
+        <div class="github-stat-card glass-card" data-hoverable>
+          <i class="fa-solid fa-users" aria-hidden="true"></i>
+          <h3 id="github-follower-count">...</h3>
+          <p>Followers</p>
+        </div>
+      </div>
+
+      <div class="github-search-container">
+        <h3 class="github-sub-heading">My Latest Repositories</h3>
+        <div class="github-search-wrapper" data-hoverable>
+          <i class="fa-solid fa-search" aria-hidden="true"></i>
+          <input
+            type="search"
+            id="github-search"
+            placeholder="Search my latest repositories..."
+          />
+        </div>
+      </div>
+
+      <div class="github-repos-container" id="github-repos-container">
+        <div class="loader"></div>
+        </div>
+
+      <div class="github-link-container">
+        <a
+          href="https://github.com/sunnyrebel286"
+          target="_blank"
+          class="btn"
+          data-hoverable
+          data-magnetic
+          >View All Repositories
+          <i class="fa-solid fa-arrow-up-right-from-square"></i
+        ></a>
+      </div>
+    </section>
+
     <section class="skills" id="skills">
       <h2 class="heading">My <span>Skills</span></h2>
 
+      <div class="skills-toggle-buttons">
+        <button
+          class="filter-btn active"
+          id="skills-creative-btn"
+          data-hoverable
+          data-magnetic
+        >
+          <i class="fa-solid fa-palette"></i> Creative View
+        </button>
+        <button
+          class="filter-btn"
+          id="skills-structured-btn"
+          data-hoverable
+          data-magnetic
+        >
+          <i class="fa-solid fa-list-check"></i> Structured View
+        </button>
+      </div>
+
       <div class="skills-container">
-        <!-- Existing Skills -->
-        <div class="skills-box">
-          <i class="fa-brands fa-html5"></i>
-          <h3>HTML5</h3>
-        </div>
-        <div class="skills-box">
-          <i class="fa-brands fa-css3-alt"></i>
-          <h3>CSS3</h3>
-        </div>
-        <div class="skills-box">
-          <i class="fa-brands fa-js"></i>
-          <h3>JavaScript</h3>
-        </div>
-        <div class="skills-box">
-          <i class="fa-brands fa-react"></i>
-          <h3>React</h3>
-        </div>
-        <div class="skills-box">
-          <i class="fa-brands fa-git-alt"></i>
-          <h3>Git</h3>
-        </div>
-        <div class="skills-box">
-          <i class="fa-brands fa-figma"></i>
-          <h3>Figma</h3>
+        <div id="tag-cloud-container" class="skills-view-container active">
+          <canvas id="skills-canvas" width="600" height="600">
+            <p>Your browser does not support HTML5 canvas.</p>
+          </canvas>
+          <div id="tag-cloud-fallback" style="display: none">
+            <span class="skill-tag" style="color: #00e0ff">React</span>
+            <span class="skill-tag" style="color: #ff00a8">.NET</span>
+            <span class="skill-tag" style="color: #fff">JavaScript</span>
+            <span class="skill-tag" style="color: #00e0ff">C#</span>
+            <span class="skill-tag" style="color: #ff00a8">SQL Server</span>
+            <span class="skill-tag" style="color: #fff">HTML5</span>
+            <span class="skill-tag" style="color: #00e0ff">CSS3</span>
+            <span class="skill-tag" style="color: #ff00a8">Git</span>
+            <span class="skill-tag" style="color: #fff">Figma</span>
+            <span class="skill-tag" style="color: #00e0ff">MongoDB</span>
+            <span class="skill-tag" style="color: #ff00a8">Docker</span>
+            <span class="skill-tag" style="color: #fff">REST APIs</span>
+          </div>
         </div>
 
-        <!-- NEW: Added Skills -->
-        <div class="skills-box">
-          <i class="fa-solid fa-server"></i>
-          <h3>Backend</h3>
-        </div>
-        <div class="skills-box">
-          <i class="fa-solid fa-laptop-code"></i>
-          <h3>.NET</h3>
-        </div>
-        <div class="skills-box">
-          <i class="fa-solid fa-database"></i>
-          <h3>Database</h3>
+        <div id="skills-grid-container" class="skills-view-container">
+          <div class="skills-category-grid">
+            <div class="skills-category-box glass-card" data-hoverable>
+              <h3><i class="fa-solid fa-code"></i> Frontend</h3>
+              <ul>
+                <li>React.js</li>
+                <li>JavaScript (ES6+)</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>Ethers.js (Web3)</li>
+              </ul>
+            </div>
+            <div class="skills-category-box glass-card" data-hoverable>
+              <h3><i class="fa-solid fa-server"></i> Backend</h3>
+              <ul>
+                <li>C#</li>
+                <li>.NET Core & .NET 8</li>
+                <li>RESTful APIs</li>
+                <li>Solidity (Web3)</li>
+                <li>Node.js (Basic)</li>
+              </ul>
+            </div>
+            <div class="skills-category-box glass-card" data-hoverable>
+              <h3><i class="fa-solid fa-database"></i> Databases</h3>
+              <ul>
+                <li>SQL Server</li>
+                <li>MongoDB</li>
+              </ul>
+            </div>
+            <div class="skills-category-box glass-card" data-hoverable>
+              <h3>
+                <i class="fa-solid fa-screwdriver-wrench"></i> Tools & Other
+              </h3>
+              <ul>
+                <li>Git & GitHub</li>
+                <li>Docker (Basic)</li>
+                <li>Figma</li>
+                <li>Hardhat (Web3)</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. EDUCATION (JOURNEY) SECTION -->
+    <section class="services" id="services">
+      <h2 class="heading">My <span>Services</span></h2>
+      <div class="services-container">
+        <div class="services-card-container" data-hoverable>
+          <div class="services-card">
+            <div class="services-card-front glass-card">
+              <i class="fa-solid fa-server" aria-hidden="true"></i>
+              <h3>Backend Development</h3>
+              <p>Robust, scalable, and secure server-side logic.</p>
+            </div>
+            <div class="services-card-back glass-card">
+              <h4>Key Technologies</h4>
+              <ul>
+                <li>C# & .NET Core</li>
+                <li>RESTful API Design</li>
+                <li>SQL Server & MongoDB</li>
+                <li>Authentication & Security</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="services-card-container" data-hoverable>
+          <div class="services-card">
+            <div class="services-card-front glass-card">
+              <i class="fa-solid fa-code" aria-hidden="true"></i>
+              <h3>Web Development</h3>
+              <p>Modern, responsive, and blazing-fast websites.</p>
+            </div>
+            <div class="services-card-back glass-card">
+              <h4>Key Technologies</h4>
+              <ul>
+                <li>HTML5 & CSS3</li>
+                <li>JavaScript (ES6+)</li>
+                <li>React.js</li>
+                <li>Responsive Design</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="services-card-container" data-hoverable>
+          <div class="services-card">
+            <div class="services-card-front glass-card">
+              <i class="fa-solid fa-palette" aria-hidden="true"></i>
+              <h3>UI/UX Designing</h3>
+              <p>User-centric designs that are both beautiful and intuitive.</p>
+            </div>
+            <div class="services-card-back glass-card">
+              <h4>Key Tools</h4>
+              <ul>
+                <li>Figma</li>
+                <li>User-Flow Mapping</li>
+                <li>Prototyping & Wireframing</li>
+                <li>Accessibility Standards</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+      <h2 class="heading">Latest <span>Projects</span></h2>
+
+      <div class="portfolio-filter-buttons">
+        <button
+          class="filter-btn active"
+          data-filter="all"
+          data-hoverable
+          data-magnetic
+        >
+          All
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="fullstack"
+          data-hoverable
+          data-magnetic
+        >
+          Full-Stack
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="backend"
+          data-hoverable
+          data-magnetic
+        >
+          Backend
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="react"
+          data-hoverable
+          data-magnetic
+        >
+          React
+        </button>
+        <button
+          class="filter-btn"
+          data-filter="web3"
+          data-hoverable
+          data-magnetic
+        >
+          Web3
+        </button>
+      </div>
+
+      <div class="portfolio-container">
+        <div
+          class="portfolio-box"
+          data-category="fullstack"
+          data-hoverable
+          data-modal-title="Full-Stack E-Commerce"
+          data-modal-img="https://placehold.co/600x400/0D0B26/FF00A8?text=E-Commerce+Platform&font=inter"
+          data-modal-desc="A complete e-commerce solution featuring a React frontend and a .NET 8 API backend. Includes product management, user authentication (JWT), and order processing."
+          data-modal-tech="React|.NET 8 API|SQL Server|JWT"
+          data-modal-features="Product Catalog|User Authentication|Shopping Cart"
+          data-modal-live="#"
+          data-modal-repo="https://github.com/sunnyrebel286"
+        >
+          <div class="portfolio-box-spotlight"></div>
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/0D0B26/FF00A8?text=E-Commerce+Platform&font=inter"
+              alt="Full-Stack E-Commerce Project"
+              loading="lazy"
+            />
+            <div class="portfolio-layer">
+              <h4>Full-Stack E-Commerce</h4>
+              <p>React & .NET</p>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="portfolio-box"
+          data-category="backend"
+          data-hoverable
+          data-modal-title="Cloud-Native Inventory API"
+          data-modal-img="https://placehold.co/600x400/0D0B26/00E0FF?text=Cloud+Inventory+API&font=inter"
+          data-modal-desc="A high-performance, containerized RESTful API built with .NET 8 and C# for managing product inventory. Deployed using Docker and optimized for scalability."
+          data-modal-tech=".NET 8|C#|Docker|SQL Server|REST API"
+          data-modal-features="Containerized with Docker|CRUD Endpoints|Optimized for Scalability"
+          data-modal-live="#"
+          data-modal-repo="https://github.com/sunnyrebel286"
+        >
+          <div class="portfolio-box-spotlight"></div>
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/0D0B26/00E0FF?text=Cloud+Inventory+API&font=inter"
+              alt="Cloud-Native Inventory API"
+              loading="lazy"
+            />
+            <div class="portfolio-layer">
+              <h4>Cloud-Native Inventory API</h4>
+              <p>Backend (.NET 8)</p>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="portfolio-box"
+          data-category="react"
+          data-hoverable
+          data-modal-title="AI Sentiment Analyzer"
+          data-modal-img="https://placehold.co/600x400/0D0B26/FF00A8?text=AI+Sentiment+Analyzer&font=inter"
+          data-modal-desc="A modern React application that consumes a custom-built backend API. Users can input text, and the app provides a real-time sentiment analysis using a machine learning model."
+          data-modal-tech="React|Chart.js|Axios|NLP API"
+          data-modal-features="Real-time Analysis|Data Visualization|Consumes NLP API"
+          data-modal-live="#"
+          data-modal-repo="https://github.com/sunnyrebel286"
+        >
+          <div class="portfolio-box-spotlight"></div>
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/0D0B26/FF00A8?text=AI+Sentiment+Analyzer&font=inter"
+              alt="AI Sentiment Analyzer Project"
+              loading="lazy"
+            />
+            <div class="portfolio-layer">
+              <h4>AI Sentiment Analyzer</h4>
+              <p>React & AI</p>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="portfolio-box"
+          data-category="web3"
+          data-hoverable
+          data-modal-title="NFT Minting dApp"
+          data-modal-img="https://placehold.co/600x400/0D0B26/00E0FF?text=Web3+NFT+dApp&font=inter"
+          data-modal-desc="A decentralized application (dApp) frontend for minting NFTs. Built with React and Ethers.js, it connects to browser wallets (like MetaMask) and interacts with a smart contract on the Ethereum testnet."
+          data-modal-tech="React|Ethers.js|Solidity|Hardhat|Web3"
+          data-modal-features="Wallet Connection (MetaMask)|Smart Contract Interaction|NFT Minting Functionality"
+          data-modal-live="#"
+          data-modal-repo="https://github.com/sunnyrebel286"
+        >
+          <div class="portfolio-box-spotlight"></div>
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/0D0B26/00E0FF?text=Web3+NFT+dApp&font=inter"
+              alt="Web3 NFT dApp"
+              loading="lazy"
+            />
+            <div class="portfolio-layer">
+              <h4>NFT Minting dApp</h4>
+              <p>React & Web3</p>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="portfolio-box"
+          data-category="backend"
+          data-hoverable
+          data-modal-title=".NET Blog Engine API"
+          data-modal-img="https://placehold.co/600x400/0D0B26/00E0FF?text=Blog+Engine+API&font=inter"
+          data-modal-desc="A RESTful API for a blog, built with .NET 8. Features JWT authentication, CRUD operations for posts/comments, and SQL Server integration using Entity Framework."
+          data-modal-tech=".NET 8|C#|JWT|SQL Server|REST API"
+          data-modal-features="Secure JWT Authentication|Full CRUD Operations|Entity Framework Core"
+          data-modal-live="#"
+          data-modal-repo="https://github.com/sunnyrebel286"
+        >
+          <div class="portfolio-box-spotlight"></div>
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/0D0B26/00E0FF?text=Blog+Engine+API&font=inter"
+              alt=".NET Blog Engine API"
+              loading="lazy"
+            />
+            <div class="portfolio-layer">
+              <h4>.NET Blog Engine API</h4>
+              <p>Backend (.NET 8)</p>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="portfolio-box"
+          data-category="react"
+          data-hoverable
+          data-modal-title="React Movie Finder"
+          data-modal-img="https://placehold.co/600x400/0D0B26/FF00A8?text=Movie+Finder+App&font=inter"
+          data-modal-desc="A responsive React app for browsing and searching movies. It fetches data from the TMDB (The Movie Database) API and displays popular, top-rated, and searchable movies."
+          data-modal-tech="React|Axios|TMDB API|CSS Grid"
+          data-modal-features="Live API Data|Dynamic Search|Responsive Design"
+          data-modal-live="#"
+          data-modal-repo="https://github.com/sunnyrebel286"
+        >
+          <div class="portfolio-box-spotlight"></div>
+          <div class="portfolio-box-inner">
+            <img
+              src="https://placehold.co/600x400/0D0B26/FF00A8?text=Movie+Finder+App&font=inter"
+              alt="React Movie Finder App"
+              loading="lazy"
+            />
+            <div class="portfolio-layer">
+              <h4>React Movie Finder</h4>
+              <p>React & API</p>
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="education" id="education">
       <h2 class="heading">My <span>Journey</span></h2>
 
       <div class="education-container">
-        <!-- Existing Items -->
-        <div class="education-box">
+        <div class="education-box glass-card" data-hoverable>
+          <i class="fa-solid fa-briefcase education-icon"></i>
           <span class="education-year">July 2025</span>
-          <h3>
-            Software Developer Intern - Countrees AI Technologies Private
-            Limited
-          </h3>
+          <h3>Software Developer Intern</h3>
+          <h4>Countrees AI Technologies</h4>
           <p>
-            Backend Developer (C# / .NET) Developed and maintained scalable
-            backend systems using C# and .NET, ensuring smooth integration with
-            frontend, AI, and analytics modules. Focused on API development,
-            database management, and system performance optimization.
+            Developed and maintained scalable backend systems using C# and
+            .NET, focusing on API development and database management.
           </p>
         </div>
 
-        <div class="education-box">
+        <div class="education-box glass-card" data-hoverable>
+          <i class="fa-solid fa-graduation-cap education-icon"></i>
           <span class="education-year">2023 - 2025</span>
-          <h3>
-            Master of Computer Application - Noida Institute of Engineering and
-            Technology
-          </h3>
+          <h3>Master of Computer Application</h3>
+          <h4>Noida Institute of Engineering</h4>
           <p>
-            As MCA Student Passionate about crafting powerful backend systems,
-            seamless integrations, and data-driven applications. I love turning
-            complex ideas into elegant, functional software solutions.
+            Specialized in advanced software development, cloud computing, and
+            backend systems architecture.
           </p>
         </div>
 
-        <div class="education-box journey-hidden">
+        <div class="education-box journey-hidden glass-card" data-hoverable>
+          <i class="fa-solid fa-graduation-cap education-icon"></i>
           <span class="education-year">2019 - 2023</span>
-          <h3>
-            Bachelor of Computer Application - Babasaheb Bhimrao Ambedkar Bihar
-            University
-          </h3>
+          <h3>Bachelor of Computer Application</h3>
+          <h4>Babasaheb Bhimrao Ambedkar Bihar University</h4>
           <p>
-            As BCA Student Built a strong foundation in programming, databases,
-            and software development. Passionate about learning new technologies
-            and creating practical, real-world solutions.
+            Built a strong foundation in programming, databases, and software
+            development principles.
           </p>
         </div>
 
-        <div class="education-box journey-hidden">
+        <div class="education-box journey-hidden glass-card" data-hoverable>
+          <i class="fa-solid fa-school education-icon"></i>
           <span class="education-year">2019</span>
-          <h3>Intermediate - Bihar School Examination Board</h3>
+          <h3>Intermediate - Science</h3>
+          <h4>Bihar School Examination Board</h4>
           <p>
             Focused on Science and Mathematics, building strong analytical and
-            problem-solving skills that sparked my interest in technology.
+            problem-solving skills.
           </p>
         </div>
       </div>
 
-      <!-- NEW: "See More" Button Container -->
       <div class="journey-see-more-container">
-        <button class="btn" id="journey-see-more">See More</button>
+        <button class="btn" id="journey-see-more" data-hoverable data-magnetic>
+          See More
+        </button>
       </div>
     </section>
 
-    <!-- 6. SERVICES SECTION -->
-    <section class="services" id="services">
-      <h2 class="heading">My <span>Services</span></h2>
-      <div class="services-container">
-        <div class="services-box">
-          <i class="fa-solid fa-server"></i>
-          <h3>Backend Development</h3>
-          <p>
-            I build robust and scalable server-side applications, focusing on
-            RESTful APIs, data management (SQL/NoSQL), security, and
-            performance.
-          </p>
-        </div>
-
-        <div class="services-box">
-          <i class="fa-solid fa-code"></i>
-          <h3>Web Development</h3>
-          <p>
-            I design and build clean, user-friendly websites that look great on
-            all devices, focusing on modern, responsive design and smooth
-            performance.
-          </p>
-        </div>
-
-        <div class="services-box">
-          <i class="fa-solid fa-palette"></i>
-          <h3>UI/UX Designing</h3>
-          <p>
-            I create clean, user-friendly designs that make websites and apps
-            easy to use and visually appealing, keeping users engaged.
-          </p>
-        </div>
-
-        <div class="services-box">
-          <i class="fa-solid fa-mobile-screen-button"></i>
-          <h3>Responsive Design</h3>
-          <p>
-            I specialize in building layouts that adapt perfectly to any screen
-            size, from mobile phones to desktops, ensuring a great user
-            experience everywhere.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 7. PORTFOLIO SECTION -->
-    <section class="portfolio" id="portfolio">
-      <h2 class="heading">Latest <span>Projects</span></h2>
-
-      <!-- Filter Buttons -->
-      <div class="portfolio-filter-buttons">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="react">React</button>
-        <button class="filter-btn" data-filter="js">JavaScript</button>
-        <!-- NEW: Added Filters -->
-        <button class="filter-btn" data-filter="backend">Backend</button>
-        <button class="filter-btn" data-filter="dotnet">.NET</button>
-        <button class="filter-btn" data-filter="design">Design</button>
-      </div>
-
-      <div class="portfolio-container">
-        <!-- Project 1 (Existing) -->
-        <div class="portfolio-box" data-category="react">
-          <div class="portfolio-box-inner">
-            <img
-              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Pixabay+Clone&font=nunito"
-              alt="Pixabay Clone Project"
-              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+1&font=nunito'"
-            />
-            <div class="portfolio-layer">
-              <h4>Pixabay Clone</h4>
-              <p>
-                A Pixabay clone using React.js that lets users search and
-                download high-quality images.
-              </p>
-              <div class="portfolio-tech">
-                <span>React</span>
-                <span>Pixabay API</span>
-                <span>CSS</span>
-              </div>
-              <div class="portfolio-links">
-                <a
-                  href="https://pixabay-free-images-for-everyone.vercel.app/"
-                  target="_blank"
-                  ><i class="fa-solid fa-up-right-from-square"></i
-                ></a>
-                <a href="https://github.com/sunnyrebel286" target="_blank"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2 (Existing) -->
-        <div class="portfolio-box" data-category="js">
-          <div class="portfolio-box-inner">
-            <img
-              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Digital+Clock&font=nunito"
-              alt="Digital Clock Project"
-              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+2&font=nunito'"
-            />
-            <div class="portfolio-layer">
-              <h4>Digital Clock</h4>
-              <p>
-                This interactive digital clock features a clean, modern design
-                with smooth animations and dynamic themes.
-              </p>
-              <div class="portfolio-tech">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-              </div>
-              <div class="portfolio-links">
-                <a
-                  href="https://digital-clock-seven-azure.vercel.app/"
-                  target="_blank"
-                  ><i class="fa-solid fa-up-right-from-square"></i
-                ></a>
-                <a href="https://github.com/sunnyrebel286" target="_blank"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3 (Existing) -->
-        <div class="portfolio-box" data-category="react">
-          <div class="portfolio-box-inner">
-            <img
-              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Weather+App&font=nunito"
-              alt="Weather App Project"
-              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+3&font=nunito'"
-            />
-            <div class="portfolio-layer">
-              <h4>Weather App</h4>
-              <p>
-                A React-based weather app that fetches real-time data from an
-                API based on user search.
-              </p>
-              <div class="portfolio-tech">
-                <span>React</span>
-                <span>Weather API</span>
-                <span>Tailwind</span>
-              </div>
-              <div class="portfolio-links">
-                <a href="https://weather-sense-eight.vercel.app/" target="_blank"
-                  ><i class="fa-solid fa-up-right-from-square"></i
-                ></a>
-                <a href="https://github.com/sunnyrebel286" target="_blank"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 4 (Existing) -->
-        <div class="portfolio-box" data-category="design">
-          <div class="portfolio-box-inner">
-            <img
-              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Landing+Page&font=nunito"
-              alt="Landing Page Design"
-              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+4&font=nunito'"
-            />
-            <div class="portfolio-layer">
-              <h4>SaaS Landing Page</h4>
-              <p>
-                A modern landing page design for a fictional SaaS company,
-                focusing on UI/UX principles.
-              </p>
-              <div class="portfolio-tech">
-                <span>Figma</span>
-                <span>UI/UX</span>
-              </div>
-              <div class="portfolio-links">
-                <a href="#" target="_blank"
-                  ><i class="fa-solid fa-up-right-from-square"></i
-                ></a>
-                <a href="https://github.com/sunnyrebel286" target="_blank"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- NEW: Project 5 (Backend) -->
-        <div class="portfolio-box" data-category="backend">
-          <div class="portfolio-box-inner">
-            <img
-              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=E-commerce+API&font=nunito"
-              alt="E-commerce API"
-              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+5&font=nunito'"
-            />
-            <div class="portfolio-layer">
-              <h4>E-commerce API</h4>
-              <p>
-                A robust RESTful API for an e-commerce platform, handling
-                products, users, and orders.
-              </p>
-              <div class="portfolio-tech">
-                <span>Node.js</span>
-                <span>Express</span>
-                <span>MongoDB</span>
-              </div>
-              <div class="portfolio-links">
-                <a href="#" target="_blank"
-                  ><i class="fa-solid fa-up-right-from-square"></i
-                ></a>
-                <a href="https://github.com/sunnyrebel286" target="_blank"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- NEW: Project 6 (.NET) -->
-        <div class="portfolio-box" data-category="dotnet">
-          <div class="portfolio-box-inner">
-            <img
-              src="https://placehold.co/600x400/1a1f2c/7c96ff?text=Inventory+System&font=nunito"
-              alt="Inventory Management System"
-              onerror="this.src='https://placehold.co/600x400/1a1f2c/7c96ff?text=Project+6&font=nunito'"
-            />
-            <div class="portfolio-layer">
-              <h4>Inventory System</h4>
-              <p>
-                A desktop application built with .NET (WPF) and C# to manage
-                company inventory and sales.
-              </p>
-              <div class="portfolio-tech">
-                <span>C#</span>
-                <span>.NET</span>
-                <span>SQL Server</span>
-              </div>
-              <div class="portfolio-links">
-                <a href="#" target="_blank"
-                  ><i class="fa-solid fa-up-right-from-square"></i
-                ></a>
-                <a href="https://github.com/sunnyrebel286" target="_blank"
-                  ><i class="fa-brands fa-github"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 8. TESTIMONIALS SECTION -->
     <section class="testimonial" id="testimonial">
       <h2 class="heading">Client <span>Testimonials</span></h2>
 
       <div class="testimonial-container">
         <div class="swiper testimonial-slider">
           <div class="swiper-wrapper">
-            <div class="swiper-slide testimonial-box">
+            <div class="swiper-slide testimonial-box glass-card" data-hoverable>
               <img
-                src="https://placehold.co/200x200/cccccc/1f1f1f?text=JD&font=nunito"
-                alt="Client 1"
-                onerror="this.src='https://placehold.co/200x200/cccccc/1f1f1f?text=C1&font=nunito'"
+                src="https://placehold.co/200x200/cccccc/0D0B26?text=JD&font=inter"
+                alt="Profile photo of John Doe"
+                loading="lazy"
               />
               <h3>John Doe</h3>
               <h4>Project Manager</h4>
@@ -515,26 +732,26 @@
               </p>
             </div>
 
-            <div class="swiper-slide testimonial-box">
+            <div class="swiper-slide testimonial-box glass-card" data-hoverable>
               <img
-                src="https://placehold.co/200x200/cccccc/1f1f1f?text=JS&font=nunito"
-                alt="Client 2"
-                onerror="this.src='https://placehold.co/200x200/cccccc/1f1f1f?text=C2&font=nunito'"
+                src="https://placehold.co/200x200/cccccc/0D0B26?text=JS&font=inter"
+                alt="Profile photo of Jane Smith"
+                loading="lazy"
               />
               <h3>Jane Smith</h3>
               <h4>UX Designer</h4>
               <p>
                 "I collaborated with Sani on a project, and his frontend skills
-                are top-notch. He writes clean HTML/CSS and has a great eye for
+                are top-notch. He writes clean code and has a great eye for
                 detail."
               </p>
             </div>
 
-            <div class="swiper-slide testimonial-box">
+            <div class="swiper-slide testimonial-box glass-card" data-hoverable>
               <img
-                src="https://placehold.co/200x200/cccccc/1f1f1f?text=MJ&font=nunito"
-                alt="Client 3"
-                onerror="this.src='https://placehold.co/200x200/cccccc/1f1f1f?text=C3&font=nunito'"
+                src="https://placehold.co/200x200/cccccc/0D0B26?text=MJ&font=inter"
+                alt="Profile photo of Mike Johnson"
+                loading="lazy"
               />
               <h3>Mike Johnson</h3>
               <h4>Startup Founder</h4>
@@ -542,7 +759,7 @@
                 "Incredible work! Sani helped build our initial landing page.
                 The site is fast, looks great on mobile, and has improved our
                 engagement."
-              </p>
+              </g>
             </div>
           </div>
           <div class="swiper-pagination"></div>
@@ -550,20 +767,27 @@
       </div>
     </section>
 
-    <!-- 9. CONTACT SECTION -->
     <section class="contact" id="contact">
-      <h2 class="heading">Contact <span>Me</span></h2>
+      <h2 class="heading">Let's <span>Talk</span></h2>
 
       <div class="contact-container">
-        <!-- Contact Info -->
-        <div class="contact-info">
+        <div class="contact-info glass-card" data-hoverable>
+          <h3>Get in Touch</h3>
+          <p class="contact-subtitle">
+            Have a project in mind, or just want to say hi? My inbox is
+            always open.
+          </p>
           <div class="contact-info-box">
-            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="icon" data-hoverable>
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            </div>
             <div class="details">
               <h4>Email</h4>
-              <!-- UPDATE: Clickable mailto link added -->
               <p>
-                <a href="mailto:sunnyrebel286@gmail.com"
+                <a
+                  href="mailto:sunnyrebel286@gmail.com"
+                  data-hoverable
+                  data-magnetic
                   >sunnyrebel286@gmail.com</a
                 >
               </p>
@@ -571,101 +795,91 @@
           </div>
 
           <div class="contact-info-box">
-            <div class="icon"><i class="fa-solid fa-phone"></i></div>
+            <div class="icon" data-hoverable>
+              <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            </div>
             <div class="details">
               <h4>Phone</h4>
-              <!-- UPDATE: Clickable tel link added -->
-              <p><a href="tel:+919570206906">+91 95702 06906</a></p>
-            </div>
-          </div>
-
-          <div class="contact-info-box">
-            <div class="icon"><i class="fa-brands fa-linkedin"></i></div>
-            <div class="details">
-              <h4>LinkedIn</h4>
-              <!-- UPDATE: Clickable link added -->
               <p>
-                <a
-                  href="https://linkedin.com/in/sani-kumar"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >linkedin.com/in/sani-kumar</a
+                <a href="tel:+919570206906" data-hoverable data-magnetic
+                  >+91 95702 06906</a
                 >
               </p>
             </div>
           </div>
 
-          <!-- NEW: GitHub Info Box -->
           <div class="contact-info-box">
-            <div class="icon"><i class="fa-brands fa-github"></i></div>
+            <div class="icon" data-hoverable>
+              <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+            </div>
             <div class="details">
-              <h4>GitHub</h4>
+              <h4>LinkedIn</h4>
               <p>
                 <a
-                  href="https://github.com/sunnyrebel286"
+                  href="https://linkedin.com/in/sani-kumar"
                   target="_blank"
                   rel="noopener noreferrer"
-                  >github.com/sunnyrebel286</a
+                  data-hoverable
+                  data-magnetic
+                  >linkedin.com/in/sani-kumar</a
                 >
               </p>
             </div>
           </div>
         </div>
 
-        <!-- Contact Form -->
         <form
           action="https://formsubmit.co/sunnyrebel286@gmail.com"
           method="POST"
-          class="contact-form"
+          class="contact-form contact-form-inset"
+          data-hoverable
         >
-          <!-- UPDATE: .input-box class is no longer flex, so items stack -->
-          <div class="input-box">
-            <div class="input-group">
-              <input type="text" name="name" placeholder="Full Name" required />
-              <i class="fa-solid fa-user"></i>
-            </div>
-            <div class="input-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                required
-              />
-              <i class="fa-solid fa-envelope"></i>
-            </div>
+          <div class="input-group">
+            <input
+              type="text"
+              id="form-name"
+              name="name"
+              placeholder=" "
+              required
+            />
+            <label for="form-name">Full Name</label>
+            <i class="fa-solid fa-user" aria-hidden="true"></i>
           </div>
 
-          <div class="input-box">
-            <div class="input-group">
-              <input
-                type="tel"
-                name="phone"
-                placeholder="Mobile Number"
-                required
-              />
-              <i class="fa-solid fa-phone"></i>
-            </div>
-            <div class="input-group">
-              <input
-                type="text"
-                name="subject"
-                placeholder="Email Subject"
-                required
-              />
-              <i class="fa-solid fa-pen-to-square"></i>
-            </div>
+          <div class="input-group">
+            <input
+              type="email"
+              id="form-email"
+              name="email"
+              placeholder=" "
+              required
+            />
+            <label for="form-email">Email Address</label>
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          </div>
+
+          <div class="input-group">
+            <input
+              type="text"
+              id="form-subject"
+              name="subject"
+              placeholder=" "
+              required
+            />
+            <label for="form-subject">Subject</label>
+            <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
           </div>
 
           <div class="input-group">
             <textarea
               name="message"
-              id="message"
-              cols="30"
-              rows="10"
-              placeholder="Your Message"
+              id="form-message"
+              rows="5"
+              placeholder=" "
               required
             ></textarea>
-            <i class="fa-solid fa-comment-dots"></i>
+            <label for="form-message">Your Message</label>
+            <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
           </div>
 
           <input
@@ -674,38 +888,122 @@
             value="https://yourwebsite.com/thankyou.html"
           />
           <input type="hidden" name="_captcha" value="false" />
-          <input type="Submit" value="Send Message" class="btn" />
+          <input
+            type="Submit"
+            value="Send Message"
+            class="btn"
+            data-hoverable
+            data-magnetic
+          />
         </form>
       </div>
     </section>
 
-    <!-- 10. FOOTER SECTION -->
+    <section class="hire-me" id="hire-me">
+      <div class="hire-me-content glass-card" data-hoverable>
+        <h2 class="heading">Available for <span>Work</span></h2>
+        <p>
+          I'm currently seeking new opportunities and creative projects. Let's
+          build something amazing together.
+        </p>
+        <a href="#contact" class="btn" data-hoverable data-magnetic
+          >Hire Me <i class="fa-solid fa-paper-plane"></i
+        ></a>
+      </div>
+    </section>
+
     <footer class="footer">
       <div class="footer-text">
-        <p>Copyright &copy; 2025 by Sani's | All Rights Reserved.</p>
+        <p>Copyright &copy; 2025 by Sani Kumar | All Rights Reserved.</p>
       </div>
 
-      <div class="footer-iconTop">
-        <a href="#home"><i class="fa-solid fa-angle-up"></i></a>
+      <div
+        class="footer-iconTop"
+        id="progress-scroll-top"
+        data-hoverable
+        data-magnetic
+      >
+        <svg class="progress-circle" viewBox="-1 -1 34 34">
+          <circle cx="16" cy="16" r="15.9155" class="progress-circle-bg" />
+          <circle
+            cx="16"
+            cy="16"
+            r="15.9155"
+            class="progress-circle-bar"
+            id="progress-circle-bar"
+          />
+        </svg>
+        <a href="#home" aria-label="Scroll back to top"
+          ><i class="fa-solid fa-angle-up"></i
+        ></a>
       </div>
     </footer>
 
-    <!--=================================
-      JAVASCRIPT LIBRARIES
-    =================================-->
+    <div id="portfolio-modal" class="portfolio-modal">
+      <div class="modal-content" data-hoverable>
+        <button
+          id="modal-close-btn"
+          class="modal-close-btn"
+          data-hoverable
+          data-magnetic
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-body">
+          <div class="modal-image-container">
+            <img
+              id="modal-img"
+              src="https://placehold.co/600x400/1a1f2c/30C5FF?text=Project+1&font=inter"
+              alt="Project Image"
+              loading="lazy"
+            />
+          </div>
+          <div class="modal-details-container">
+            <h2 id="modal-title">Project Title</h2>
+            <div class="modal-tech-tags" id="modal-tech-tags">
+              </div>
+            <p id="modal-desc">Project description...</p>
+            <h3>Key Features</h3>
+            <ul id="modal-features">
+              <li>Feature one</li>
+              <li>Feature two</li>
+            </ul>
+            <div class="modal-links">
+              <a
+                id="modal-live-link"
+                href="#"
+                class="btn"
+                target="_blank"
+                data-hoverable
+                data-magnetic
+                >Live Demo
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+              <a
+                id="modal-repo-link"
+                href="#"
+                class="btn btn-secondary"
+                target="_blank"
+                data-hoverable
+                data-magnetic
+                >View Code <i class="fa-brands fa-github"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <!-- SCROLL REVEAL (Animation Library) -->
     <script src="https://unpkg.com/scrollreveal"></script>
-
-    <!-- TYPED JS (Typing Animation) -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-
-    <!-- SWIPER JS (Carousel Library) -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"
+      integrity="sha512-R9mbDs1rOKjDVELsBPL2LOKx/lA/m/h9bGNGReSRkyN3vY/S0Q0T/qCsS/vSKSFdsqdh8I/Gk91jM7Ca3QG/MA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
 
-    <!-- CUSTOM JAVASCRIPT -->
     <script src="main.js"></script>
   </body>
 </html>
-
-

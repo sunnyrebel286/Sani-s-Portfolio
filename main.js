@@ -873,47 +873,48 @@ window.addEventListener("resize", () => {
 
 
 // Contact Form Submission (AJAX)
-const contactForm = document.getElementById('form-main-element');
-const submitButton = document.getElementById('contact-submit-btn');
-const statusMessage = document.getElementById('form-status');
+// const contactForm = document.getElementById('form-main-element');
+// const submitButton = document.getElementById('contact-submit-btn');
+// const statusMessage = document.getElementById('form-status');
 
-if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
+// if (contactForm) {
+//     contactForm.addEventListener('submit', async function(e) {
+//         e.preventDefault();
         
-        if (!submitButton || !statusMessage) return;
+//         if (!submitButton || !statusMessage) return;
 
-        submitButton.disabled = true;
-        submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-        statusMessage.className = 'status-message';
-        statusMessage.textContent = '';
+//         submitButton.disabled = true;
+//         submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+//         statusMessage.className = 'status-message';
+//         statusMessage.textContent = '';
         
-        const formData = new FormData(contactForm);
+//         const formData = new FormData(contactForm);
 
-        try {
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+//         try {
+//             const response = await fetch(contactForm.action, {
+//                 method: 'POST',
+//                 body: formData,
+//                 headers: {
+//                     'Accept': 'application/json'
+//                 }
+//             });
 
-            if (response.ok) {
-                statusMessage.classList.add('success');
-                statusMessage.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message sent successfully!';
-                contactForm.reset();
-            } else {
-                statusMessage.classList.add('error');
-                statusMessage.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Oops! Something went wrong.';
-            }
-        } catch (error) {
-            console.error("Form Submission Error:", error);
-            statusMessage.classList.add('error');
-            statusMessage.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Network error. Please try again.';
-        } finally {
-            submitButton.disabled = false;
-            submitButton.innerHTML = 'Send Message';
-        }
-    });
-}
+//             if (response.ok) {
+//                 statusMessage.classList.add('success');
+//                 statusMessage.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message sent successfully!';
+//                 contactForm.reset();
+//             } else {
+//                 statusMessage.classList.add('error');
+//                 statusMessage.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Oops! Something went wrong.';
+//             }
+//         } catch (error) {
+//             console.error("Form Submission Error:", error);
+//             statusMessage.classList.add('error');
+//             statusMessage.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Network error. Please try again.';
+//         } finally {
+//             submitButton.disabled = false;
+//             submitButton.innerHTML = 'Send Message';
+//         }
+//     });
+// }
+

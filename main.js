@@ -917,5 +917,11 @@ if (contactForm) {
         }
     });
 }
-
-
+// COMMENT THIS BLOCK OUT TEMPORARILY
+/*
+if (contactForm) {
+    contactForm.addEventListener('submit', async function(e) {
+        // ... all the code inside here ...
+    });
+}
+*/

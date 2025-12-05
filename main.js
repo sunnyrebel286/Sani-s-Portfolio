@@ -1,927 +1,1288 @@
-// Utility functions
-const throttle = (func, limit = 16) => {
-  let inThrottle = false;
-  return function(...args) {
-    if (!inThrottle) {
-      func.apply(this, args);
-      inThrottle = true;
-      setTimeout(() => {
-        inThrottle = false;
-      }, limit);
-    }
-  };
-};
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
 
-const debounce = (func, delay = 250) => {
-  let timeoutId;
-  return function(...args) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => {
-      func.apply(this, args);
-    }, delay);
-  };
-};
+    <title>Sani Kumar | Full-Stack .NET & React Developer</title>
 
-// Global cursor elements and desktop detection for re-initialization
-const cursorDot = document.querySelector("[data-cursor-dot]");
-const cursorOutline = document.querySelector("[data-cursor-outline]");
-const isDesktop = window.matchMedia("(pointer: fine)").matches && 
-                   window.innerWidth >= 768;
-
-
-function reInitDynamicInteractions() {
-  const newHoverables = document.querySelectorAll("[data-hoverable]:not([data-init])");
-  newHoverables.forEach((el) => {
-    el.dataset.init = "true";
-    if (cursorDot && cursorOutline) {
-      el.addEventListener("mouseenter", () => {
-        cursorDot.classList.add("cursor-dot-interact");
-        cursorOutline.classList.add("cursor-interact");
-      });
-      el.addEventListener("mouseleave", () => {
-        cursorDot.classList.remove("cursor-dot-interact");
-        cursorOutline.classList.remove("cursor-interact");
-      });
-    }
-  });
-}
-
-
-// Preloader functionality
-const preloader = document.querySelector(".preloader");
-const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-).matches;
-
-if (preloader) {
-  const hidePreloader = () => {
-    // Only hide if not already hidden
-    if (preloader.classList.contains("preloader-hidden")) return;
-
-    preloader.classList.add("preloader-hidden");
-    setTimeout(() => {
-      preloader.style.display = "none";
-    }, 500); // Match CSS transition duration
-  };
-  
-  // Check if document is already complete or interactive
-  const checkLoadState = () => {
-      if (document.readyState === 'complete' || document.readyState === 'interactive') {
-          hidePreloader();
-      }
-  };
-
-  // Ensure preloader hides on full page load
-  window.addEventListener("load", hidePreloader); 
-  // Attempt to hide immediately if script loads after content is ready
-  checkLoadState();
-}
-
-// Aurora background blobs (interactive background effect)
-const auroraBlobs = document.querySelectorAll("[data-aurora-blob]");
-
-if (!prefersReducedMotion && auroraBlobs.length) {
-  const moveBlobs = throttle((e) => {
-    const { clientX, clientY } = e;
-    requestAnimationFrame(() => {
-      auroraBlobs.forEach((blob, index) => {
-        const divider = (index + 1) * 20; // Each blob moves slightly less
-        const moveX = (clientX - window.innerWidth / 2) / divider;
-        const moveY = (clientY - window.innerHeight / 2) / divider;
-        blob.style.transform = `translate(${moveX}px, ${moveY}px)`;
-      });
-    });
-  }, 16); // Throttle to roughly 60fps
-
-  window.addEventListener("mousemove", moveBlobs);
-}
-
-// Custom Cursor (dot and outline) and Magnetic Hover Effects
-if (cursorDot && cursorOutline && isDesktop && !prefersReducedMotion) {
-  const moveCursor = throttle((e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
-    cursorOutline.animate(
-      { left: `${posX}px`, top: `${posY}px` },
-      { duration: 500, fill: "forwards" }
-    );
-  }, 16); // Throttle to roughly 60fps
-
-  const magneticElements = document.querySelectorAll(
-    '[data-hoverable][data-magnetic]:not(.services-card-container)'
-  );
-  const magneticRadius = 80; // Distance from element center to activate magnetic effect
-
-  const magneticMove = throttle((e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
+    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="styles.css"></noscript>
     
-    // Reset transform for service cards, as they have their own hover animation
-    magneticElements.forEach((el) => {
-      // Skip services-card-container as it handles its own transform
-      if (el.classList.contains('services-card-container')) {
-        el.style.transform = 'none'; 
-        return;
-      }
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sani Kumar",
+      "jobTitle": "Full-Stack .NET & React Developer",
+      "image": "https://placehold.co/400x400/4CAF50/0A1612?text=SK&font=inter",
+      "url": "https://your-domain.com",
+      "sameAs": [
+        "https://github.com/sunnyrebel286",
+        "https://www.linkedin.com/in/sani-kumar/"
+      ],
+      "knowsAbout": [".NET", "React", "C#", "SQL Server", "Docker"],
+      "email": "sunnyrebel286@gmail.com"
+    }
+    </script>
+
+    
+    <meta
+      name="description"
+      content="Portfolio of Sani Kumar, a full-stack .NET and React developer. Explore projects, GitHub activity, skills, case studies, and ways to work together."
+    />
+    <meta
+      name="keywords"
+      content="Sani Kumar, Full-Stack Developer, .NET, React, C#, SQL Server, Docker, Web Developer, Portfolio"
+    />
+    <meta name="author" content="Sani Kumar" />
+
+    <meta property="og:title" content="Sani Kumar | Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Explore Sani's full-stack .NET and React projects, GitHub activity, and case studies."
+    />
+    <meta
+      property="og:image"
+      content="https://placehold.co/1200x630/0A1612/4CAF50?text=Sani+Kumar+Portfolio&font=inter"
+    />
+    <meta property="og:url" content="https://your-domain.com" />
+    <meta property="og:type" content="website" />
+
+    
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>SK</text></svg>"
+    />
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+      media="print" onload="this.media='all'"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+      media="print" onload="this.media='all'"
+    />
+  </head>
+
+  <body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <div class="preloader" aria-hidden="true">
+      <div class="preloader-text">
+        Loading<span class="preloader-dot">.</span>
+      </div>
+    </div>
+
+    
+    <div class="aurora-container" aria-hidden="true">
+      <div class="aurora-blob" data-aurora-blob></div>
+      <div class="aurora-blob" data-aurora-blob></div>
+      <div class="aurora-blob" data-aurora-blob></div>
+    </div>
+
+    
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
+
+    
+    <div class="scroll-progress-bar"></div>
+
+    
+    <header class="header" role="banner">
+      <a href="#home" class="logo" data-hoverable data-magnetic>
+        Sani's Portfolio<span class="logo-dot">.</span>
+      </a>
+
+      <nav
+        class="navbar"
+        id="navbar-menu"
+        aria-label="Primary navigation"
+        role="navigation"
+      >
+        <a href="#home" class="active" data-hoverable data-magnetic>Home</a>
+        <a href="#about" data-hoverable data-magnetic>About</a>
+        <a href="#github" data-hoverable data-magnetic>GitHub</a>
+        <a href="#skills" data-hoverable data-magnetic>Skills</a>
+        <a href="#services" data-hoverable data-magnetic>Services</a>
+        <a href="#portfolio" data-hoverable data-magnetic>Projects</a>
+        <a href="#case-studies" data-hoverable data-magnetic>Case Studies</a>
+        <a href="#education" data-hoverable data-magnetic>Journey</a>
+        <a href="#process" data-hoverable data-magnetic>Process</a>
+        <a href="#testimonial" data-hoverable data-magnetic>Testimonials</a>
+        <a href="#faq" data-hoverable data-magnetic>FAQ</a>
+        <a href="#contact" data-hoverable data-magnetic>Contact</a>
+      </nav>
+
+      <div class="header-right">
+        <button
+          id="darkMode-icon-btn"
+          aria-label="Toggle dark mode"
+          class="dark-mode-toggle-btn"
+          type="button"
+          data-hoverable
+          data-magnetic
+        >
+          <i class="fa-solid fa-moon" id="darkMode-icon"></i>
+        </button>
+
+        <button
+          id="menu-icon"
+          class="menu-icon-btn"
+          aria-controls="navbar-menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation menu"
+          type="button"
+          data-hoverable
+          data-magnetic
+        >
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </header>
+
+    
+    <main id="main-content">
       
-      const rect = el.getBoundingClientRect();
-      const elX = rect.left + rect.width / 2;
-      const elY = rect.top + rect.height / 2;
-      const distance = Math.sqrt(
-        Math.pow(elX - posX, 2) + Math.pow(elY - posY, 2)
-      );
-      
-      if (distance < magneticRadius) {
-        // Calculate a gentle pull effect
-        el.style.transform = `translate(${(posX - elX) * 0.4}px, ${(posY - elY) * 0.4}px)`;
-      } else {
-        el.style.transform = "translate(0, 0)"; // Reset to original position
-      }
-    });
-  }, 16);
-
-  window.addEventListener("mousemove", magneticMove);
-}
-
-// Add/remove cursor interaction class for all data-hoverable elements
-const hoverables = document.querySelectorAll("[data-hoverable]");
-if (cursorDot && cursorOutline) {
-  hoverables.forEach((el) => {
-    el.addEventListener("mouseenter", () => {
-      cursorDot.classList.add("cursor-dot-interact");
-      cursorOutline.classList.add("cursor-interact");
-    });
-    el.addEventListener("mouseleave", () => {
-      cursorDot.classList.remove("cursor-dot-interact");
-      cursorOutline.classList.remove("cursor-interact");
-    });
-  });
-}
-
-
-// Scroll progress bar and scroll-to-top button
-const scrollProgressBar = document.querySelector(".scroll-progress-bar");
-const scrollTopBtn = document.getElementById("progress-scroll-top");
-const progressCircleBar = document.getElementById("progress-circle-bar");
-const circumference = 2 * Math.PI * 15.9155; // Circumference for the SVG circle
-
-const updateScrollProgress = throttle(() => {
-  const { scrollTop, scrollHeight } = document.documentElement;
-  const scrollableHeight = scrollHeight - window.innerHeight;
-  const scrollPercent = (scrollTop / scrollableHeight) * 100;
-
-  if (scrollProgressBar) {
-    scrollProgressBar.style.width = `${scrollPercent}%`;
-  }
-
-  if (scrollTopBtn) {
-    if (scrollTop > 300) { // Show button after scrolling down 300px
-      scrollTopBtn.style.display = "block";
-      if (progressCircleBar) {
-        const dashOffset = circumference - (scrollTop / scrollableHeight) * circumference;
-        progressCircleBar.style.strokeDashoffset = dashOffset;
-      }
-    } else {
-      scrollTopBtn.style.display = "none";
-    }
-  }
-}, 16); // Throttle to roughly 60fps
-
-window.addEventListener("scroll", updateScrollProgress, { passive: true });
-
-// Navbar Toggle (mobile menu)
-const menuIcon = document.querySelector("#menu-icon");
-const navbar = document.querySelector(".navbar");
-if (menuIcon && navbar) {
-  menuIcon.onclick = () => {
-    const icon = menuIcon.querySelector("i");
-    icon.classList.toggle("fa-bars");
-    icon.classList.toggle("fa-xmark");
-    navbar.classList.toggle("active");
-    const isExpanded = navbar.classList.contains("active");
-    menuIcon.setAttribute("aria-expanded", isExpanded);
-  };
-}
-
-// Active navigation link highlighting on scroll & sticky header
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("header nav a");
-const header = document.querySelector("header");
-
-const updateActiveNav = throttle(() => {
-  let currentSectionId = "";
-  const top = window.scrollY;
-  
-  sections.forEach((sec) => {
-    const offset = sec.offsetTop - 150; // Adjust offset for header height
-    if (top >= offset && top < offset + sec.offsetHeight) {
-      currentSectionId = sec.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach((link) => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${currentSectionId}`) {
-      link.classList.add("active");
-    }
-  });
-
-  if (header) {
-    header.classList.toggle("sticky", window.scrollY > 100);
-  }
-
-  // Close mobile menu if open and scrolling (better UX)
-  if (navbar && navbar.classList.contains("active") && menuIcon) {
-    const icon = menuIcon.querySelector("i");
-    icon.classList.add("fa-bars");
-    icon.classList.remove("fa-xmark");
-    navbar.classList.remove("active");
-    menuIcon.setAttribute("aria-expanded", "false");
-  }
-}, 100); // Debounce for smoother updates
-
-window.addEventListener("scroll", updateActiveNav, { passive: true });
-
-// ScrollReveal Animations (if library is present and motion is not reduced)
-if (window.ScrollReveal && !prefersReducedMotion) {
-  ScrollReveal({
-    distance: "80px",
-    duration: 2000,
-    delay: 200,
-    reset: false, // Only animate once
-  });
-
-  ScrollReveal().reveal(".home-content, .heading", { origin: "top" });
-  ScrollReveal().reveal(
-    ".home-img-3d-wrapper, .services-container, .testimonial-slider, .contact-form, .github-stats-container, .hire-me-content",
-    { origin: "bottom" }
-  );
-  ScrollReveal().reveal(".home-content h1, .about-img, .contact-info", {
-    origin: "left",
-  });
-  ScrollReveal().reveal(
-    ".home-content p, .about-content, .education-container, .portfolio-filter-buttons, .github-repos-container, .skills-container, .skills-toggle-buttons",
-    { origin: "right" }
-  );
-  ScrollReveal().reveal(".portfolio-box, .stat-box", {
-    interval: 150,
-    origin: "bottom",
-  });
-  ScrollReveal().reveal(".social-media a", {
-    origin: "bottom",
-    interval: 150,
-    delay: 400,
-  });
-}
-
-// Vanilla-Tilt (3D Hover Effect for elements with data-tilt)
-if (window.VanillaTilt && isDesktop && !prefersReducedMotion) {
-  VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
-    max: 15, // Max tilt rotation (degrees)
-    speed: 400, // Speed of the tilt effect
-    glare: true,
-    "max-glare": 0.3,
-    "glare-prerender": false, // No prerendering of the glare effect
-    "full-page-listening": false, // Only listen to mouse movement over the element
-    gyroscope: true, // Enable gyroscope on mobile devices
-  });
-}
-
-// 3D Tag Cloud for Skills Section (Canvas-based)
-const skillsCanvas = document.getElementById("skills-canvas");
-const tagCloudContainer = document.getElementById("tag-cloud-container");
-if (skillsCanvas && tagCloudContainer && !prefersReducedMotion) {
-  const ctx = skillsCanvas.getContext("2d");
-
-  function resizeCanvas() {
-    const rect = tagCloudContainer.getBoundingClientRect();
-    skillsCanvas.width = rect.width;
-    skillsCanvas.height = rect.height;
-  }
-
-  resizeCanvas();
-  window.addEventListener("resize", debounce(resizeCanvas, 250));
-
-  const skills = [
-    { text: "React", color: "#4DD0E1" },
-    { text: ".NET", color: "#4CAF50" },
-    { text: "JavaScript", color: "#A5D6A7" },
-    { text: "C#", color: "#4DD0E1" },
-    { text: "SQL Server", color: "#4CAF50" },
-    { text: "HTML5", color: "#A5D6A7" },
-    { text: "CSS3", color: "#4DD0E1" },
-    { text: "Git", color: "#4CAF50" },
-    { text: "Figma", color: "#A5D6A7" },
-    { text: "MongoDB", color: "#4DD0E1" },
-    { text: "Docker", color: "#4CAF50" },
-    { text: "REST APIs", color: "#A5D6A7" },
-    { text: "Web3", color: "#4DD0E1" },
-    { text: "Ethers.js", color: "#4CAF50" },
-    { text: "Solidity", color: "#A5D6A7" },
-  ];
-
-  let tags = [];
-  let radius = 0;
-  let mouseX = 0;
-  let mouseY = 0;
-
-  function createTag(text, color) {
-    const phi = Math.acos(-1 + (2 * Math.random() - 1)); // For spherical distribution
-    const theta = Math.sqrt(skills.length * Math.PI) * phi;
-    return {
-      x: radius * Math.cos(theta) * Math.sin(phi),
-      y: radius * Math.sin(theta) * Math.sin(phi),
-      z: radius * Math.cos(phi),
-      text: text,
-      color: color,
-      phi: phi,
-      theta: theta,
-    };
-  }
-
-  function initializeTags() {
-    const rect = tagCloudContainer.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    radius = Math.min(width, height) * 0.4; // Responsive radius
-    tags = skills.map((skill) => createTag(skill.text, skill.color));
-    mouseX = width / 2; // Start in center
-    mouseY = height / 2;
-  }
-
-  function updateTags() {
-    // Simple rotation based on mouse position
-    const angleX = (mouseY - skillsCanvas.height / 2) * 0.0001;
-    const angleY = (mouseX - skillsCanvas.width / 2) * 0.0001;
-
-    tags.forEach((tag) => {
-      // Rotate around X-axis
-      const cosX = Math.cos(angleX);
-      const sinX = Math.sin(angleX);
-      const y1 = tag.y * cosX - tag.z * sinX;
-      const z1 = tag.z * cosX + tag.y * sinX;
-      tag.y = y1;
-      tag.z = z1;
-
-      // Rotate around Y-axis
-      const cosY = Math.cos(angleY);
-      const sinY = Math.sin(angleY);
-      const x1 = tag.x * cosY - tag.z * sinY;
-      const z2 = tag.z * cosY + tag.x * sinY;
-      tag.x = x1;
-      tag.z = z2;
-    });
-
-    tags.sort((a, b) => b.z - a.z); // Sort for correct depth rendering
-  }
-
-  function drawTags() {
-    const rect = tagCloudContainer.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-
-    ctx.clearRect(0, 0, width, height);
-
-    tags.forEach((tag) => {
-      // Scale and opacity based on depth (z-coordinate)
-      const scale = (tag.z + radius) / (2 * radius); // 0.5 to 1.5 roughly
-      const alpha = (tag.z + radius) / (2 * radius) * 0.5 + 0.5; // Fades with depth
-      const fontSize = scale * 12 + 10; // Dynamic font size
-
-      ctx.font = `bold ${fontSize}px Inter, sans-serif`;
-      ctx.fillStyle = tag.color;
-      ctx.globalAlpha = alpha;
-      ctx.fillText(tag.text, tag.x + width / 2, tag.y + height / 2);
-    });
-  }
-
-  function animate() {
-    updateTags();
-    drawTags();
-    requestAnimationFrame(animate);
-  }
-
-  tagCloudContainer.addEventListener("mousemove", (e) => {
-    const rect = tagCloudContainer.getBoundingClientRect();
-    mouseX = e.clientX - rect.left;
-    mouseY = e.clientY - rect.top;
-  });
-
-  initializeTags();
-  animate();
-} else if (document.getElementById("tag-cloud-fallback")) {
-  // Show fallback if canvas or motion is reduced
-  document.getElementById("tag-cloud-fallback").style.display = "flex";
-  document.getElementById("tag-cloud-container").style.display = "none";
-}
-
-// Skills section view toggle (Creative vs. Structured)
-const creativeBtn = document.getElementById("skills-creative-btn");
-const structuredBtn = document.getElementById("skills-structured-btn");
-const cloudView = document.getElementById("tag-cloud-container");
-const gridView = document.getElementById("skills-grid-container");
-
-if (creativeBtn && structuredBtn && cloudView && gridView) {
-  creativeBtn.addEventListener("click", () => {
-    creativeBtn.classList.add("active");
-    structuredBtn.classList.remove("active");
-    gridView.classList.remove("active");
-    cloudView.classList.add("active");
-  });
-
-  structuredBtn.addEventListener("click", () => {
-    structuredBtn.classList.add("active");
-    creativeBtn.classList.remove("active");
-    cloudView.classList.remove("active");
-    gridView.classList.add("active");
-  });
-}
-
-// Typed.js (Dynamic text for home section)
-if (window.Typed && document.querySelector(".multiple-text")) {
-  new Typed(".multiple-text", {
-    strings: [
-      "Backend Developer",
-      "Frontend Developer",
-      "Full-Stack Developer",
-      "React Developer",
-      "C# Developer",
-      ".NET Developer",
-    ],
-    typeSpeed: 70,
-    backSpeed: 70,
-    backDelay: 1000,
-    loop: true,
-  });
-}
-
-// Dark Mode Toggle
-const darkModeIconBtn = document.getElementById("darkMode-icon-btn");
-const darkModeIcon = document.getElementById("darkMode-icon");
-
-if (darkModeIconBtn && darkModeIcon) {
-  // Check for saved theme preference or system preference
-  const savedTheme = localStorage.getItem("theme");
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  if (savedTheme === "light" || (!savedTheme && !prefersDark)) {
-    document.body.classList.add("light-mode");
-    darkModeIcon.classList.replace("fa-moon", "fa-sun");
-    darkModeIconBtn.setAttribute("aria-label", "Toggle dark mode");
-  }
-
-  darkModeIconBtn.addEventListener("click", () => {
-    document.body.classList.toggle("light-mode");
-    const isLight = document.body.classList.contains("light-mode");
-    darkModeIcon.classList.toggle("fa-moon", !isLight);
-    darkModeIcon.classList.toggle("fa-sun", isLight);
-    darkModeIconBtn.setAttribute(
-      "aria-label",
-      isLight ? "Toggle dark mode" : "Toggle light mode"
-    );
-    localStorage.setItem("theme", isLight ? "light" : "dark");
-    
-    // Add a glow effect for visual feedback
-    darkModeIcon.classList.add("glow");
-    setTimeout(() => darkModeIcon.classList.remove("glow"), 600);
-  });
-}
-
-// About section toggle (Philosophy vs. Mission)
-const toggleButtons = document.querySelectorAll(".about-toggle-btn");
-const textContents = document.querySelectorAll(".about-text");
-
-toggleButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    toggleButtons.forEach((btn) => btn.classList.remove("active"));
-    textContents.forEach((text) => text.classList.remove("show"));
-    button.classList.add("active");
-    
-    const targetText = document.getElementById(
-      button.dataset.target + "-text"
-    );
-    if (targetText) {
-      targetText.classList.add("show");
-    }
-  });
-});
-
-// GitHub API Integration
-const GITHUB_USER = "sunnyrebel286";
-const GITHUB_API_USER = `https://api.github.com/users/${GITHUB_USER}`;
-const GITHUB_API_REPOS = `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=100`;
-const reposContainer = document.getElementById("github-repos-container");
-
-async function fetchGitHubStats() {
-  try {
-    // Fetch user data
-    const userRes = await fetch(GITHUB_API_USER);
-    if (!userRes.ok) {
-      throw new Error(`User API Error: ${userRes.status} - ${userRes.statusText}`);
-    }
-    const userData = await userRes.json();
-    
-    // Fetch repositories data
-    const repoRes = await fetch(GITHUB_API_REPOS);
-    if (!repoRes.ok) {
-        throw new Error(`Repo API Error: ${repoRes.status} - ${repoRes.statusText}`);
-    }
-    const repoData = await repoRes.json();
-
-
-    // Update GitHub User Card
-    const userCard = document.getElementById("github-user-card");
-    if (userCard) {
-      userCard.innerHTML = `
-        <img src="${userData.avatar_url}" alt="${userData.name || userData.login}" data-hoverable data-magnetic />
-        <h3>${userData.name || userData.login}</h3>
-        <p>@${userData.login}</p>
-        <p>${userData.bio || "Full-stack developer."}</p>
-      `;
-    }
-
-    // Update GitHub Stats (Repos, Followers, Stars)
-    ["github-repo-count", "github-follower-count", "github-stars-count"].forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) {
-        if (id === "github-stars-count") {
-          const totalStars = repoData.reduce((acc, repo) => acc + repo.stargazers_count, 0);
-          el.textContent = totalStars;
-        } else if (id === "github-repo-count") {
-          el.textContent = userData.public_repos || "0";
-        } else {
-          el.textContent = userData.followers || "0";
-        }
-      }
-    });
-
-    // Populate Latest Repositories
-    if (reposContainer) {
-      reposContainer.innerHTML = ""; // Clear existing loaders/content
-      const reposToDisplay = repoData.slice(0, 6); // Display up to 6 latest repos
-
-      if (reposToDisplay.length === 0) {
-        reposContainer.innerHTML = `
-          <p style="text-align: center; color: var(--text-color-dark); grid-column: 1 / -1;">
-            No repositories found.
+      <section class="home" id="home" aria-labelledby="home-heading">
+        <div class="home-content">
+          <p class="eyebrow">Full-Stack .NET & React Developer</p>
+          <h1 class="home-title" id="home-heading">Hi, I'm Sani Kumar</h1>
+          <h3>
+            And I’m a <span class="multiple-text" aria-live="polite"></span>
+          </h3>
+          <p>
+            Aspiring full-stack developer merging backend logic with frontend
+            finesse. I build clean, high-performance web applications that solve
+            real problems and look great doing it.
           </p>
-        `;
-      } else {
-        reposToDisplay.forEach((repo) => {
-          const repoCard = document.createElement("div");
-          repoCard.className = "github-repo-card glass-card";
-          repoCard.dataset.hoverable = true; // For magnetic effect
-          repoCard.innerHTML = `
-            <h4>
-              <a href="${repo.html_url}" target="_blank" data-hoverable data-magnetic rel="noreferrer">
-                <i class="fa-solid fa-book-bookmark"></i> ${repo.name}
-              </a>
-            </h4>
-            <p>${repo.description || "No description provided."}</p>
-            <div class="repo-footer">
-              <span class="repo-lang">${repo.language || "N/A"}</span>
-              <div class="repo-stats">
-                <span title="Stars"><i class="fa-solid fa-star"></i> ${repo.stargazers_count}</span>
-                <span title="Forks"><i class="fa-solid fa-code-fork"></i> ${repo.forks_count}</span>
+          <div class="home-cta-row">
+            <a
+              href="Sani kumar Resume.pdf"
+              class="btn"
+              download
+              data-hoverable
+              data-magnetic
+            >
+              Download CV
+              <i class="fa-solid fa-download" aria-hidden="true"></i>
+            </a>
+            <a
+              href="#contact"
+              class="btn btn-secondary"
+              data-hoverable
+              data-magnetic
+            >
+              Let’s Collaborate
+              <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+            </a>
+          </div>
+
+          <div class="social-media" aria-label="Social links">
+            <a
+              href="https://www.linkedin.com/in/sani-kumar/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View Sani's LinkedIn Profile"
+              data-hoverable
+              data-magnetic
+              ><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i
+            ></a>
+            <a
+              href="https://github.com/sunnyrebel286"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View Sani's GitHub Profile"
+              data-hoverable
+              data-magnetic
+              ><i class="fa-brands fa-github" aria-hidden="true"></i
+            ></a>
+            <a
+              href="https://x.com/itz_sani_"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View Sani's Twitter Profile"
+              data-hoverable
+              data-magnetic
+              ><i class="fa-brands fa-twitter" aria-hidden="true"></i
+            ></a>
+            <a
+              href="https://www.instagram.com/__itz_sanii_/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View Sani's Instagram Profile"
+              data-hoverable
+              data-magnetic
+              ><i class="fa-brands fa-instagram" aria-hidden="true"></i
+            ></a>
+          </div>
+        </div>
+
+        <div class="home-img-3d-wrapper" data-tilt>
+          <div class="home-img">
+            <img
+              src="photo.jpg"
+              alt="Portrait of developer Sani Kumar"
+              onerror="this.src='https://placehold.co/400x400/4CAF50/0A1612?text=SK&font=inter'"
+              loading="lazy"
+            />
+          </div>
+        </div>
+
+        <div class="home-stats" aria-label="Key stats">
+          <article class="stat-box glass-card">
+            <h3>2+</h3>
+            <p>Years of<br />Learning</p>
+          </article>
+          <article class="stat-box glass-card">
+            <h3>12+</h3>
+            <p>Projects<br />Completed</p>
+          </article>
+          <article
+            class="stat-box glass-card"
+            id="github-stars-stat"
+            aria-live="polite"
+          >
+            <h3 id="github-stars-count">...</h3>
+            <p>GitHub<br />Stars Earned</p>
+          </article>
+        </div>
+      </section>
+
+      
+      <section class="about" id="about" aria-labelledby="about-heading">
+        <div class="about-img">
+          <img
+            src="photo.jpg"
+            alt="Sani working on a laptop in a developer setup"
+            onerror="this.src='https://placehold.co/600x600/0A1612/4DD0E1?text=About&font=inter'"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="about-content">
+          <h2 class="heading" id="about-heading">About <span>Me</span></h2>
+          <h3>Full-Stack Developer</h3>
+
+          <div class="about-toggles" data-hoverable>
+            <button
+              class="about-toggle-btn active"
+              data-target="philosophy"
+              type="button"
+              data-magnetic
+            >
+              My Philosophy
+            </button>
+            <button
+              class="about-toggle-btn"
+              data-target="mission"
+              type="button"
+              data-magnetic
+            >
+              My Mission
+            </button>
+          </div>
+
+          <div class="about-text-content">
+            <p id="philosophy-text" class="about-text show">
+              I believe in the power of clean code and intuitive design. For me,
+              development isn't just about making things work; it's about
+              building solutions that are scalable, maintainable, and a pleasure
+              to use.
+            </p>
+            <p id="mission-text" class="about-text">
+              My mission is to grow as a developer and contribute to meaningful
+              projects. I focus on C#, .NET, React, and SQL, and I enjoy working
+              in teams that ship impactful, real-world applications.
+            </p>
+          </div>
+          <a href="#contact" class="btn" data-hoverable data-magnetic
+            >Let's Talk</a
+          >
+        </div>
+      </section>
+
+      
+      <section class="github" id="github" aria-labelledby="github-heading">
+        <h2 class="heading" id="github-heading">My <span>GitHub</span> Activity</h2>
+        <div class="github-stats-container">
+          <article
+            class="github-stat-card glass-card"
+            id="github-user-card"
+            data-hoverable
+            aria-live="polite"
+          >
+            <div class="loader" aria-hidden="true"></div>
+          </article>
+          <article class="github-stat-card glass-card" data-hoverable>
+            <i class="fa-solid fa-code-branch" aria-hidden="true"></i>
+            <h3 id="github-repo-count">...</h3>
+            <p>Public Repositories</p>
+          </article>
+          <article class="github-stat-card glass-card" data-hoverable>
+            <i class="fa-solid fa-users" aria-hidden="true"></i>
+            <h3 id="github-follower-count">...</h3>
+            <p>Followers</p>
+          </article>
+        </div>
+
+        <div class="github-search-container">
+          <h3 class="github-sub-heading">My Latest Repositories</h3>
+          <div class="github-search-wrapper" data-hoverable>
+            <i class="fa-solid fa-search" aria-hidden="true"></i>
+            <label for="github-search" class="sr-only">Search repositories</label>
+            <input
+              type="search"
+              id="github-search"
+              placeholder="Search my latest repositories..."
+              autocomplete="off"
+            />
+          </div>
+        </div>
+
+        <div
+          class="github-repos-container"
+          id="github-repos-container"
+          aria-live="polite"
+        >
+          <div class="loader" aria-hidden="true"></div>
+        </div>
+
+        <div class="github-link-container">
+          <a
+            href="https://github.com/sunnyrebel286"
+            target="_blank"
+            class="btn"
+            data-hoverable
+            data-magnetic
+            rel="noreferrer"
+          >
+            View All Repositories
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </section>
+
+      
+      <section class="skills" id="skills" aria-labelledby="skills-heading">
+        <h2 class="heading" id="skills-heading">My <span>Skills</span></h2>
+
+        <div class="skills-toggle-buttons">
+          <button
+            class="filter-btn active"
+            id="skills-creative-btn"
+            type="button"
+            data-hoverable
+            data-magnetic
+          >
+            <i class="fa-solid fa-palette"></i> Creative View
+          </button>
+          <button
+            class="filter-btn"
+            id="skills-structured-btn"
+            type="button"
+            data-hoverable
+            data-magnetic
+          >
+            <i class="fa-solid fa-list-check"></i> Structured View
+          </button>
+        </div>
+
+        <div class="skills-container">
+          
+          <div id="tag-cloud-container" class="skills-view-container active">
+            <canvas id="skills-canvas" width="600" height="600">
+              <p>Your browser does not support HTML5 canvas.</p>
+            </canvas>
+            <div id="tag-cloud-fallback">
+              <span class="skill-tag" style="color: #00e0ff">React</span>
+              <span class="skill-tag" style="color: #ff00a8">.NET</span>
+              <span class="skill-tag" style="color: #fff">JavaScript</span>
+              <span class="skill-tag" style="color: #00e0ff">C#</span>
+              <span class="skill-tag" style="color: #ff00a8">SQL Server</span>
+              <span class="skill-tag" style="color: #fff">HTML5</span>
+              <span class="skill-tag" style="color: #00e0ff">CSS3</span>
+              <span class="skill-tag" style="color: #ff00a8">Git</span>
+              <span class="skill-tag" style="color: #fff">Figma</span>
+              <span class="skill-tag" style="color: #00e0ff">MongoDB</span>
+              <span class="skill-tag" style="color: #ff00a8">Docker</span>
+              <span class="skill-tag" style="color: #fff">REST APIs</span>
+            </div>
+          </div>
+
+          
+          <div id="skills-grid-container" class="skills-view-container">
+            <div class="skills-category-grid">
+              <div class="skills-category-box glass-card" data-hoverable>
+                <h3><i class="fa-solid fa-code"></i> Frontend</h3>
+                <ul>
+                  <li>React.js</li>
+                  <li>JavaScript (ES6+)</li>
+                  <li>HTML5</li>
+                  <li>CSS3</li>
+                  <li>Ethers.js (Web3)</li>
+                </ul>
+              </div>
+              <div class="skills-category-box glass-card" data-hoverable>
+                <h3><i class="fa-solid fa-server"></i> Backend</h3>
+                <ul>
+                  <li>C#</li>
+                  <li>.NET Core & .NET 8</li>
+                  <li>RESTful APIs</li>
+                  <li>Solidity (Web3)</li>
+                  <li>Node.js (Basic)</li>
+                </ul>
+              </div>
+              <div class="skills-category-box glass-card" data-hoverable>
+                <h3><i class="fa-solid fa-database"></i> Databases</h3>
+                <ul>
+                  <li>SQL Server</li>
+                  <li>MongoDB</li>
+                </ul>
+              </div>
+              <div class="skills-category-box glass-card" data-hoverable>
+                <h3>
+                  <i class="fa-solid fa-screwdriver-wrench"></i> Tools & Other
+                </h3>
+                <ul>
+                  <li>Git & GitHub</li>
+                  <li>Docker (Basic)</li>
+                  <li>Figma</li>
+                  <li>Hardhat (Web3)</li>
+                </ul>
               </div>
             </div>
-          `;
-          reposContainer.appendChild(repoCard);
-        });
-      }
-    }
-
-    reInitDynamicInteractions(); // Re-initialize hover effects for new elements
-
-  } catch (error) {
-    console.error("Error fetching GitHub stats:", error);
-    if (reposContainer) {
-      reposContainer.innerHTML = `
-        <div class="github-error-card glass-card">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          <h3>Failed to Load GitHub Stats</h3>
-          <p>Could not fetch data from the GitHub API. This might be due to rate limiting or a network issue. Please try again later. Check the console for details.</p>
+          </div>
         </div>
-      `;
-    }
-    // Set fallback values if API fails
-    ["github-repo-count", "github-follower-count", "github-stars-count"].forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) el.textContent = "N/A";
-    });
-  }
-}
 
-// Call GitHub stats fetch when the DOM is ready (or immediately if already ready)
-document.addEventListener("DOMContentLoaded", () => {
-    if (reposContainer) {
-        fetchGitHubStats();
-    }
-
-    // Initialize all other event listeners and functionality once DOM is ready
-    const hoverables = document.querySelectorAll("[data-hoverable]");
-    if (cursorDot && cursorOutline) {
-      hoverables.forEach((el) => {
-        el.addEventListener("mouseenter", () => {
-          cursorDot.classList.add("cursor-dot-interact");
-          cursorOutline.classList.add("cursor-interact");
-        });
-        el.addEventListener("mouseleave", () => {
-          cursorDot.classList.remove("cursor-dot-interact");
-          cursorOutline.classList.remove("cursor-interact");
-        });
-      });
-    }
-
-    // Initialize scroll and navigation checks
-    window.addEventListener("scroll", updateScrollProgress, { passive: true });
-    window.addEventListener("scroll", updateActiveNav, { passive: true });
-    
-    // Initialize mobile menu
-    const menuIcon = document.querySelector("#menu-icon");
-    const navbar = document.querySelector(".navbar");
-    if (menuIcon && navbar) {
-        menuIcon.onclick = () => {
-            const icon = menuIcon.querySelector("i");
-            icon.classList.toggle("fa-bars");
-            icon.classList.toggle("fa-xmark");
-            navbar.classList.toggle("active");
-            const isExpanded = navbar.classList.contains("active");
-            menuIcon.setAttribute("aria-expanded", isExpanded);
-        };
-    }
-});
-
-
-// GitHub Repository Search Functionality
-const searchInput = document.getElementById("github-search");
-if (searchInput && reposContainer) {
-  searchInput.addEventListener("input", debounce(() => {
-    const searchTerm = searchInput.value.toLowerCase();
-    const repoCards = document.querySelectorAll(".github-repo-card");
-    let found = false;
-    repoCards.forEach((card) => {
-      const cardText = card.textContent.toLowerCase();
-      if (cardText.includes(searchTerm)) {
-          card.style.display = "flex";
-          found = true;
-      } else {
-          card.style.display = "none";
-      }
-    });
-    // Optionally show a "no results" message if needed, but keeping it simple for now.
-  }, 300)); // Debounce search input
-}
-
-// Portfolio Section - Project Filtering
-const filterButtons = document.querySelectorAll(".portfolio-filter-buttons .filter-btn");
-const portfolioBoxes = document.querySelectorAll(".portfolio-box");
-
-filterButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    filterButtons.forEach((btn) => btn.classList.remove("active"));
-    button.classList.add("active");
-    const filterValue = button.getAttribute("data-filter");
-
-    portfolioBoxes.forEach((box) => {
-      const boxCategory = box.dataset.category;
-      const shouldShow = filterValue === "all" || boxCategory === filterValue;
-
-      if (shouldShow) {
-        box.classList.remove("hide"); // Show element
-      } else {
-        box.classList.add("hide"); // Hide element
-      }
-    });
-  });
-});
-
-// Portfolio Section - Project Card Spotlight Effect
-portfolioBoxes.forEach((box) => {
-  const spotlight = box.querySelector(".portfolio-box-spotlight");
-  if (spotlight && isDesktop && !prefersReducedMotion) {
-    box.addEventListener("mousemove", (e) => {
-      const rect = box.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      spotlight.style.setProperty("--mouse-x", `${x}px`);
-      spotlight.style.setProperty("--mouse-y", `${y}px`);
-    });
-  }
-});
-
-// Portfolio Modal - Project Details Popup
-const portfolioModal = document.getElementById("portfolio-modal");
-const modalCloseBtn = document.getElementById("modal-close-btn");
-const modalElements = {
-  img: document.getElementById("modal-img"),
-  title: document.getElementById("modal-title"),
-  desc: document.getElementById("modal-desc"),
-  techTags: document.getElementById("modal-tech-tags"),
-  features: document.getElementById("modal-features"),
-  liveLink: document.getElementById("modal-live-link"),
-  repoLink: document.getElementById("modal-repo-link"),
-};
-
-if (portfolioModal && portfolioBoxes.length) {
-  portfolioBoxes.forEach((box) => {
-    box.addEventListener("click", (e) => {
-      e.preventDefault();
-      const data = box.dataset; // Get all data- attributes
-
-      // Populate modal with project data
-      if (modalElements.title) modalElements.title.textContent = data.modalTitle || "Project";
-      if (modalElements.img) modalElements.img.src = data.modalImg || "";
-      if (modalElements.img) modalElements.img.alt = data.modalTitle || "Project preview";
-      if (modalElements.desc) modalElements.desc.textContent = data.modalDesc || "";
-
-      // Populate tech tags
-      if (modalElements.techTags) {
-        modalElements.techTags.innerHTML = "";
-        if (data.modalTech) {
-          data.modalTech.split("|").forEach((tag) => {
-            const span = document.createElement("span");
-            span.textContent = tag.trim();
-            modalElements.techTags.appendChild(span);
-          });
-        }
-      }
-
-      // Populate features list
-      if (modalElements.features) {
-        modalElements.features.innerHTML = "";
-        if (data.modalFeatures) {
-          data.modalFeatures.split("|").forEach((feature) => {
-            const li = document.createElement("li");
-            li.textContent = feature.trim();
-            modalElements.features.appendChild(li);
-          });
-        } else {
-          modalElements.features.innerHTML = "<li>Details not available.</li>";
-        }
-      }
-
-      // Set live demo and repo links
-      if (modalElements.liveLink) {
-        modalElements.liveLink.href = data.modalLive || "#";
-        data.modalLive && data.modalLive !== "#" 
-          ? modalElements.liveLink.removeAttribute("disabled")
-          : modalElements.liveLink.setAttribute("disabled", "true");
-      }
-      if (modalElements.repoLink) {
-        modalElements.repoLink.href = data.modalRepo || "#";
-        data.modalRepo && data.modalRepo !== "#"
-          ? modalElements.repoLink.removeAttribute("disabled")
-          : modalElements.repoLink.setAttribute("disabled", "true");
-      }
-
-      portfolioModal.classList.add("show");
-      portfolioModal.setAttribute("aria-hidden", "false");
-    });
-  });
-
-  // Close modal function
-  function closePortfolioModal() {
-    portfolioModal.classList.remove("show");
-    portfolioModal.setAttribute("aria-hidden", "true");
-  }
-
-  // Close button event listener
-  if (modalCloseBtn) {
-    modalCloseBtn.addEventListener("click", closePortfolioModal);
-  }
-
-  // Close modal when clicking outside content
-  if (portfolioModal) {
-    portfolioModal.addEventListener("click", (e) => {
-      if (e.target === portfolioModal) closePortfolioModal();
-    });
-  }
-
-  // Close modal on Escape key press
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && portfolioModal.classList.contains("show")) {
-      closePortfolioModal();
-    }
-  });
-}
-
-// Education section "See More" functionality
-const seeMoreBtn = document.getElementById("journey-see-more");
-const hiddenJourneys = document.querySelectorAll(".journey-hidden");
-let isExpanded = false;
-
-if (seeMoreBtn && hiddenJourneys.length) {
-  seeMoreBtn.addEventListener("click", () => {
-    isExpanded = !isExpanded;
-    hiddenJourneys.forEach((box, index) => {
-      if (isExpanded) {
-        setTimeout(() => {
-          box.style.display = "block";
-          setTimeout(() => box.classList.add("show"), 10);
-        }, index * 100);
-      } else {
-        box.classList.remove("show");
-        setTimeout(() => (box.style.display = "none"), 400);
-      }
-    });
-    seeMoreBtn.textContent = isExpanded ? "See Less" : "See More";
-  });
-}
-
-// Swiper Testimonials initialization
-if (window.Swiper && document.querySelector(".testimonial-slider")) {
-    new Swiper(".testimonial-slider", {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        grabCursor: true,
-        pagination: { el: ".swiper-pagination", clickable: true },
-        autoplay: { delay: 5000, disableOnInteraction: false },
-        breakpoints: { 
-            768: { slidesPerView: 2 }, 
-            992: { slidesPerView: 3 } 
-        },
-    });
-}
-
-
-// Handle window resize for responsive behavior
-let resizeTimeout;
-window.addEventListener("resize", () => {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(() => {
-    
-    if (window.innerWidth < 768) {
-      document.querySelectorAll(".cursor-dot, .cursor-outline").forEach(el => {
-        el.style.display = "none";
-      });
-    }
-    
-    const skillsCanvas = document.getElementById("skills-canvas");
-    if (skillsCanvas && skillsCanvas.getContext) {
-      // Re-initialize skills canvas size on resize
-      const tagCloudContainer = document.getElementById("tag-cloud-container");
-      const rect = tagCloudContainer.getBoundingClientRect();
-      skillsCanvas.width = rect.width;
-      skillsCanvas.height = rect.height;
-    }
-  }, 250);
-});
-
-
-// Contact Form Submission (AJAX)
-const contactForm = document.getElementById('form-main-element');
-const submitButton = document.getElementById('contact-submit-btn');
-const statusMessage = document.getElementById('form-status');
-
-if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
         
-        if (!submitButton || !statusMessage) return;
+        <div class="toolbox-strip" aria-label="Tech stack logos">
+          <span>.NET 8</span>
+          <span>React</span>
+          <span>C#</span>
+          <span>SQL Server</span>
+          <span>Docker</span>
+          <span>MongoDB</span>
+          <span>GitHub</span>
+        </div>
+      </section>
 
-        submitButton.disabled = true;
-        submitButton.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
-        statusMessage.className = 'status-message';
-        statusMessage.textContent = '';
-        
-        const formData = new FormData(contactForm);
+      
+<section class="services" id="services" aria-labelledby="services-heading">
+  <h2 class="heading" id="services-heading">My <span>Services</span></h2>
+  <div class="services-container">
+    
+    <div class="services-card-container" tabindex="0">
+      <div class="services-card">
+        <div class="services-card-front glass-card">
+          <i class="fa-solid fa-server" aria-hidden="true"></i>
+          <h3>Backend Development</h3>
+          <p>Robust, scalable, and secure server-side logic.</p>
+        </div>
+        <div class="services-card-back glass-card">
+          <h4>Key Technologies</h4>
+          <ul>
+            <li>C# & .NET Core</li>
+            <li>RESTful API Design</li>
+            <li>SQL Server & MongoDB</li>
+            <li>Authentication & Security</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-        try {
-            const response = await fetch(contactForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+    
+    <div class="services-card-container" tabindex="0">
+      <div class="services-card">
+        <div class="services-card-front glass-card">
+          <i class="fa-solid fa-code" aria-hidden="true"></i>
+          <h3>Web Development</h3>
+          <p>Modern, responsive, and blazing-fast websites.</p>
+        </div>
+        <div class="services-card-back glass-card">
+          <h4>Key Technologies</h4>
+          <ul>
+            <li>HTML5 & CSS3</li>
+            <li>JavaScript (ES6+)</li>
+            <li>React.js</li>
+            <li>Responsive Design</li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-            if (response.ok) {
-                statusMessage.classList.add('success');
-                statusMessage.innerHTML = '<i class="fa-solid fa-circle-check"></i> Message sent successfully!';
-                contactForm.reset();
-            } else {
-                statusMessage.classList.add('error');
-                statusMessage.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Oops! Something went wrong.';
-            }
-        } catch (error) {
-            console.error("Form Submission Error:", error);
-            statusMessage.classList.add('error');
-            statusMessage.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Network error. Please try again.';
-        } finally {
-            submitButton.disabled = false;
-            submitButton.innerHTML = 'Send Message';
-        }
-    });
-}
-// COMMENT THIS BLOCK OUT TEMPORARILY
-/*
-if (contactForm) {
-    contactForm.addEventListener('submit', async function(e) {
-        // ... all the code inside here ...
-    });
-}
-*/
+    
+    <div class="services-card-container" tabindex="0">
+      <div class="services-card">
+        <div class="services-card-front glass-card">
+          <i class="fa-solid fa-palette" aria-hidden="true"></i>
+          <h3>UI / UX Design</h3>
+          <p>User-centric designs that are both beautiful and intuitive.</p>
+        </div>
+        <div class="services-card-back glass-card">
+          <h4>Key Tools</h4>
+          <ul>
+            <li>Figma</li>
+            <li>User-Flow Mapping</li>
+            <li>Prototyping & Wireframing</li>
+            <li>Accessibility Standards</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div> 
+</section>
+
+
+      
+      <section
+        class="portfolio"
+        id="portfolio"
+        aria-labelledby="portfolio-heading"
+      >
+        <h2 class="heading" id="portfolio-heading">
+          Latest <span>Projects</span>
+        </h2>
+
+        <div class="portfolio-filter-buttons">
+          <button
+            class="filter-btn active"
+            data-filter="all"
+            type="button"
+            data-hoverable
+            data-magnetic
+          >
+            All
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="fullstack"
+            type="button"
+            data-hoverable
+            data-magnetic
+          >
+            Full-Stack
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="backend"
+            type="button"
+            data-hoverable
+            data-magnetic
+          >
+            Backend
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="react"
+            type="button"
+            data-hoverable
+            data-magnetic
+          >
+            React
+          </button>
+          <button
+            class="filter-btn"
+            data-filter="web3"
+            type="button"
+            data-hoverable
+            data-magnetic
+          >
+            Web3
+          </button>
+        </div>
+
+        <div class="portfolio-container">
+          
+          <article
+            class="portfolio-box"
+            data-category="fullstack"
+            data-hoverable
+            data-modal-title="Full-Stack E-Commerce"
+            data-modal-img="https://placehold.co/600x400/0A1612/4CAF50?text=E-Commerce+Platform&font=inter"
+            data-modal-desc="A complete e-commerce solution with React frontend and .NET 8 API backend, including authentication and order workflows."
+            data-modal-tech="React|.NET 8 API|SQL Server|JWT"
+            data-modal-features="Product Catalog|User Authentication|Shopping Cart|Order Management"
+            data-modal-live="#"
+            data-modal-repo="https://github.com/sunnyrebel286"
+          >
+            <div class="portfolio-box-spotlight" aria-hidden="true"></div>
+            <div class="portfolio-box-inner glass-card">
+              <img
+                src="https://placehold.co/600x400/0A1612/4CAF50?text=E-Commerce+Platform&font=inter"
+                alt="Full-Stack E-Commerce Project UI screenshot"
+                loading="lazy"
+              />
+              <div class="portfolio-layer">
+                <h4>Full-Stack E-Commerce</h4>
+                <p>React & .NET</p>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </div>
+          </article>
+
+          
+          <article
+            class="portfolio-box"
+            data-category="backend"
+            data-hoverable
+            data-modal-title="Cloud-Native Inventory API"
+            data-modal-img="https://placehold.co/600x400/0A1612/4DD0E1?text=Cloud+Inventory+API&font=inter"
+            data-modal-desc="High-performance, containerized RESTful API built with .NET 8 and C# for managing product inventory."
+            data-modal-tech=".NET 8|C#|Docker|SQL Server|REST API"
+            data-modal-features="Containerized with Docker|CRUD Endpoints|Optimized for Scalability"
+            data-modal-live="#"
+            data-modal-repo="https://github.com/sunnyrebel286"
+          >
+            <div class="portfolio-box-spotlight" aria-hidden="true"></div>
+            <div class="portfolio-box-inner glass-card">
+              <img
+                src="https://placehold.co/600x400/0A1612/4DD0E1?text=Cloud+Inventory+API&font=inter"
+                alt="Cloud-Native Inventory API dashboard"
+                loading="lazy"
+              />
+              <div class="portfolio-layer">
+                <h4>Cloud-Native Inventory API</h4>
+                <p>Backend (.NET 8)</p>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </div>
+          </article>
+
+          
+          <article
+            class="portfolio-box"
+            data-category="react"
+            data-hoverable
+            data-modal-title="AI Sentiment Analyzer"
+            data-modal-img="https://placehold.co/600x400/0A1612/4CAF50?text=AI+Sentiment+Analyzer&font=inter"
+            data-modal-desc="React app consuming a custom NLP API to analyze text sentiment in real time."
+            data-modal-tech="React|Chart.js|Axios|NLP API"
+            data-modal-features="Real-time Analysis|Data Visualization|Consumes NLP API"
+            data-modal-live="#"
+            data-modal-repo="https://github.com/sunnyrebel286"
+          >
+            <div class="portfolio-box-spotlight" aria-hidden="true"></div>
+            <div class="portfolio-box-inner glass-card">
+              <img
+                src="https://placehold.co/600x400/0A1612/4CAF50?text=AI+Sentiment+Analyzer&font=inter"
+                alt="AI Sentiment Analyzer chart visualization"
+                loading="lazy"
+              />
+              <div class="portfolio-layer">
+                <h4>AI Sentiment Analyzer</h4>
+                <p>React & AI</p>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </div>
+          </article>
+
+          
+          <article
+            class="portfolio-box"
+            data-category="web3"
+            data-hoverable
+            data-modal-title="NFT Minting dApp"
+            data-modal-img="https://placehold.co/600x400/0A1612/4DD0E1?text=Web3+NFT+dApp&font=inter"
+            data-modal-desc="Decentralized application frontend for minting NFTs, built with React and Ethers.js."
+            data-modal-tech="React|Ethers.js|Solidity|Hardhat|Web3"
+            data-modal-features="Wallet Connection (MetaMask)|Smart Contract Interaction|NFT Minting"
+            data-modal-live="#"
+            data-modal-repo="https://github.com/sunnyrebel286"
+          >
+            <div class="portfolio-box-spotlight" aria-hidden="true"></div>
+            <div class="portfolio-box-inner glass-card">
+              <img
+                src="https://placehold.co/600x400/0A1612/4DD0E1?text=Web3+NFT+dApp&font=inter"
+                alt="Web3 NFT minting dApp interface"
+                loading="lazy"
+              />
+              <div class="portfolio-layer">
+                <h4>NFT Minting dApp</h4>
+                <p>React & Web3</p>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </div>
+          </article>
+
+          
+          <article
+            class="portfolio-box"
+            data-category="backend"
+            data-hoverable
+            data-modal-title=".NET Blog Engine API"
+            data-modal-img="https://placehold.co/600x400/0A1612/4DD0E1?text=Blog+Engine+API&font=inter"
+            data-modal-desc=".NET 8 RESTful API for a blog with JWT auth and SQL Server via EF Core."
+            data-modal-tech=".NET 8|C#|JWT|SQL Server|REST API"
+            data-modal-features="Secure JWT Authentication|Full CRUD Operations|Entity Framework Core"
+            data-modal-live="#"
+            data-modal-repo="https://github.com/sunnyrebel286"
+          >
+            <div class="portfolio-box-spotlight" aria-hidden="true"></div>
+            <div class="portfolio-box-inner glass-card">
+              <img
+                src="https://placehold.co/600x400/0A1612/4DD0E1?text=Blog+Engine+API&font=inter"
+                alt=".NET Blog Engine API demo"
+                loading="lazy"
+              />
+              <div class="portfolio-layer">
+                <h4>.NET Blog Engine API</h4>
+                <p>Backend (.NET 8)</p>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </div>
+          </article>
+
+          
+          <article
+            class="portfolio-box"
+            data-category="react"
+            data-hoverable
+            data-modal-title="React Movie Finder"
+            data-modal-img="https://placehold.co/600x400/0A1612/4CAF50?text=Movie+Finder+App&font=inter"
+            data-modal-desc="Responsive React app that consumes the TMDB API to browse and search movies."
+            data-modal-tech="React|Axios|TMDB API|CSS Grid"
+            data-modal-features="Live API Data|Dynamic Search|Responsive Design"
+            data-modal-live="#"
+            data-modal-repo="https://github.com/sunnyrebel286"
+          >
+            <div class="portfolio-box-spotlight" aria-hidden="true"></div>
+            <div class="portfolio-box-inner glass-card">
+              <img
+                src="https://placehold.co/600x400/0A1612/4CAF50?text=Movie+Finder+App&font=inter"
+                alt="React Movie Finder application results page"
+                loading="lazy"
+              />
+              <div class="portfolio-layer">
+                <h4>React Movie Finder</h4>
+                <p>React & API</p>
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      
+      <section
+        class="case-studies"
+        id="case-studies"
+        aria-labelledby="case-studies-heading"
+      >
+        <h2 class="heading" id="case-studies-heading">
+          Selected <span>Case Studies</span>
+        </h2>
+        <div class="case-studies-grid">
+          <article class="case-card glass-card" data-hoverable>
+            <h3>Cloud-Native Inventory API</h3>
+            <p class="case-meta">.NET 8 • Docker • SQL Server</p>
+            <p>
+              Designed and built a scalable inventory API that runs in
+              containers, supports thousands of items, and is ready for
+              production workloads.
+            </p>
+            <ul>
+              <li>Implemented clean REST architecture with versioned endpoints.</li>
+              <li>Optimized queries and indexes for fast inventory lookups.</li>
+              <li>Containerized the API and database for repeatable deployments.</li>
+            </ul>
+          </article>
+
+          <article class="case-card glass-card" data-hoverable>
+            <h3>React Weather App</h3>
+            <p class="case-meta">React • OpenWeather API</p>
+            <p>
+              Built a responsive weather dashboard that surfaces real-time
+              conditions and forecasts using a third-party API.
+            </p>
+            <ul>
+              <li>Debounced API calls to keep the UI fast and API usage low.</li>
+              <li>Implemented error states and loading skeletons.</li>
+              <li>Optimized bundle size and lazy-loaded icon sets.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      
+      <section
+        class="education"
+        id="education"
+        aria-labelledby="education-heading"
+      >
+        <h2 class="heading" id="education-heading">My <span>Journey</span></h2>
+
+        <div class="education-container">
+          <article class="education-box glass-card" data-hoverable>
+            <i class="fa-solid fa-briefcase education-icon" aria-hidden="true"></i>
+            <span class="education-year">July 2025</span>
+            <h3>Software Developer Intern</h3>
+            <h4>Countrees AI Technologies</h4>
+            <p>
+              Developed and maintained backend systems using C# and .NET,
+              focusing on API development and database management.
+            </p>
+          </article>
+
+          <article class="education-box glass-card" data-hoverable>
+            <i
+              class="fa-solid fa-graduation-cap education-icon"
+              aria-hidden="true"
+            ></i>
+            <span class="education-year">2023 - 2025</span>
+            <h3>Master of Computer Application</h3>
+            <h4>Noida Institute of Engineering</h4>
+            <p>
+              Specialized in advanced software development, cloud computing, and
+              backend systems architecture.
+            </p>
+          </article>
+
+          <article
+            class="education-box journey-hidden glass-card"
+            data-hoverable
+          >
+            <i
+              class="fa-solid fa-graduation-cap education-icon"
+              aria-hidden="true"
+            ></i>
+            <span class="education-year">2019 - 2023</span>
+            <h3>Bachelor of Computer Application</h3>
+            <h4>Babasaheb Bhimrao Ambedkar Bihar University</h4>
+            <p>
+              Built a strong foundation in programming, databases, and software
+              development principles.
+            </p>
+          </article>
+
+          <article
+            class="education-box journey-hidden glass-card"
+            data-hoverable
+          >
+            <i
+              class="fa-solid fa-school education-icon"
+              aria-hidden="true"
+            ></i>
+            <span class="education-year">2019</span>
+            <h3>Intermediate - Science</h3>
+            <h4>Bihar School Examination Board</h4>
+            <p>
+              Focused on Science and Mathematics, building analytical and
+              problem-solving skills.
+            </p>
+          </article>
+        </div>
+
+        <div class="journey-see-more-container">
+          <button
+            class="btn"
+            id="journey-see-more"
+            type="button"
+            data-hoverable
+            data-magnetic
+          >
+            See More
+          </button>
+        </div>
+      </section>
+
+      
+      <section class="process" id="process" aria-labelledby="process-heading">
+        <h2 class="heading" id="process-heading">How <span>I Work</span></h2>
+        <div class="process-grid">
+          <article class="process-step glass-card" data-hoverable>
+            <span class="process-step-number">01</span>
+            <h3>Discover</h3>
+            <p>Understand the problem, constraints, and success metrics.</p>
+          </article>
+          <article class="process-step glass-card" data-hoverable>
+            <span class="process-step-number">02</span>
+            <h3>Design</h3>
+            <p>Draft flows, architecture, and UI with feedback loops.</p>
+          </article>
+          <article class="process-step glass-card" data-hoverable>
+            <span class="process-step-number">03</span>
+            <h3>Build</h3>
+            <p>
+              Implement clean, tested code across backend APIs and frontend
+              interfaces.
+            </p>
+          </article>
+          <article class="process-step glass-card" data-hoverable>
+            <span class="process-step-number">04</span>
+            <h3>Ship & Iterate</h3>
+            <p>Deploy, observe, and iterate based on real usage and data.</p>
+          </article>
+        </div>
+      </section>
+
+      
+      <section
+        class="testimonial"
+        id="testimonial"
+        aria-labelledby="testimonial-heading"
+      >
+        <h2 class="heading" id="testimonial-heading">
+          Client <span>Testimonials</span>
+        </h2>
+
+        <div class="testimonial-container">
+          <div class="swiper testimonial-slider">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide testimonial-box glass-card" data-hoverable>
+                <img
+                  src="https://placehold.co/200x200/cccccc/0A1612?text=JD&font=inter"
+                  alt="Profile photo of John Doe"
+                  loading="lazy"
+                />
+                <h3>John Doe</h3>
+                <h4>Project Manager</h4>
+                <p>
+                  “Sani delivered a clean, responsive website right on schedule
+                  and communicated clearly throughout the project.”
+                </p>
+              </div>
+
+              <div class="swiper-slide testimonial-box glass-card" data-hoverable>
+                <img
+                  src="https://placehold.co/200x200/cccccc/0A1612?text=JS&font=inter"
+                  alt="Profile photo of Jane Smith"
+                  loading="lazy"
+                />
+                <h3>Jane Smith</h3>
+                <h4>UX Designer</h4>
+                <p>
+                  “His frontend skills are excellent. Sani writes clean code and
+                  has a strong eye for detail and accessibility.”
+                </p>
+              </div>
+
+              <div class="swiper-slide testimonial-box glass-card" data-hoverable>
+                <img
+                  src="https://placehold.co/200x200/cccccc/0A1612?text=MJ&font=inter"
+                  alt="Profile photo of Mike Johnson"
+                  loading="lazy"
+                />
+                <h3>Mike Johnson</h3>
+                <h4>Startup Founder</h4>
+                <p>
+                  “Sani helped build our landing page. The site is fast, looks
+                  great on mobile, and improved our engagement.”
+                </p>
+              </div>
+            </div>
+            <div class="swiper-pagination" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      
+      <section class="faq" id="faq" aria-labelledby="faq-heading">
+        <h2 class="heading" id="faq-heading">Quick <span>Answers</span></h2>
+        <div class="faq-grid">
+          <article class="faq-item glass-card" data-hoverable>
+            <h3>Are you open to internships or full-time roles?</h3>
+            <p>
+              Yes, I am actively looking for full-time opportunities and
+              impactful internships in backend or full-stack roles.
+            </p>
+          </article>
+          <article class="faq-item glass-card" data-hoverable>
+            <h3>What technologies do you prefer?</h3>
+            <p>
+              On the backend, C# and .NET 8 with SQL Server. On the frontend,
+              React, TypeScript, and modern CSS layouts.
+            </p>
+          </article>
+          <article class="faq-item glass-card" data-hoverable>
+            <h3>Do you take freelance work?</h3>
+            <p>
+              Yes, for well-scoped projects where I can own the backend, API
+              design, and UI implementation.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      
+      <section class="contact" id="contact" aria-labelledby="contact-heading">
+        <h2 class="heading" id="contact-heading">Let's <span>Talk</span></h2>
+
+        <div class="contact-container">
+          <aside class="contact-info glass-card" data-hoverable>
+            <h3>Get in Touch</h3>
+            <p class="contact-subtitle">
+              Have a project in mind, or just want to say hi? My inbox is
+              always open.
+            </p>
+            <div class="contact-info-box">
+              <div class="icon" data-hoverable>
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              </div>
+              <div class="details">
+                <h4>Email</h4>
+                <p>
+                  <a
+                    href="mailto:sunnyrebel286@gmail.com"
+                    data-hoverable
+                    data-magnetic
+                    >sunnyrebel286@gmail.com</a
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-info-box">
+              <div class="icon" data-hoverable>
+                <i class="fa-solid fa-phone" aria-hidden="true"></i>
+              </div>
+              <div class="details">
+                <h4>Phone</h4>
+                <p>
+                  <a href="tel:+919570206906" data-hoverable data-magnetic
+                    >+91 95702 06906</a
+                  >
+                </p>
+              </div>
+            </div>
+
+            <div class="contact-info-box">
+              <div class="icon" data-hoverable>
+                <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+              </div>
+              <div class="details">
+                <h4>LinkedIn</h4>
+                <p>
+                  <a
+                    href="https://linkedin.com/in/sani-kumar"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-hoverable
+                    data-magnetic
+                    >linkedin.com/in/sani-kumar</a
+                  >
+                </p>
+              </div>
+            </div>
+          </aside>
+
+          <form
+            action="https://formsubmit.co/sunnyrebel286@gmail.com"
+            method="POST"
+            class="contact-form contact-form-inset"
+            id="form-main-element"
+            data-hoverable
+          >
+            <div class="input-group">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              <input
+                type="text"
+                id="form-name"
+                name="name"
+                placeholder=" "
+                required
+                autocomplete="name"
+              />
+              <label for="form-name">Full Name</label>
+            </div>
+
+            <div class="input-group">
+              <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+              <input
+                type="email"
+                id="form-email"
+                name="email"
+                placeholder=" "
+                required
+                autocomplete="email"
+              />
+              <label for="form-email">Email Address</label>
+            </div>
+
+            <div class="input-group">
+              <i class="fa-solid fa-pen-to-square" aria-hidden="true"></i>
+              <input
+                type="text"
+                id="form-subject"
+                name="subject"
+                placeholder=" "
+                required
+              />
+              <label for="form-subject">Subject</label>
+            </div>
+
+            <div class="input-group">
+              <i class="fa-solid fa-comment-dots" aria-hidden="true"></i>
+              <textarea
+                name="message"
+                id="form-message"
+                rows="5"
+                placeholder=" "
+                required
+              ></textarea>
+              <label for="form-message">Your Message</label>
+            </div>
+
+            <input
+              type="hidden"
+              name="_next"
+              value="https://yourwebsite.com/thankyou.html"
+            />
+            <input type="hidden" name="_captcha" value="false" />
+
+            <button
+              type="submit"
+              class="btn"
+              id="contact-submit-btn"
+              data-hoverable
+              data-magnetic
+            >
+              Send Message
+            </button>
+            <div id="form-status" class="status-message" aria-live="polite"></div> 
+          </form>
+        </div>
+      </section>
+
+      
+      <section class="hire-me" id="hire-me">
+        <div class="hire-me-content glass-card" data-hoverable>
+          <h2 class="heading">Available for <span>Work</span></h2>
+          <p>
+            I'm currently seeking new opportunities and creative projects. Let's
+            build something amazing together.
+          </p>
+          <a href="#contact" class="btn" data-hoverable data-magnetic>
+            Hire Me <i class="fa-solid fa-paper-plane"></i>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    
+    <footer class="footer" role="contentinfo">
+      <div class="footer-text">
+        <p>© 2025 Sani Kumar. All Rights Reserved.</p>
+      </div>
+
+      <div
+        class="footer-iconTop"
+        id="progress-scroll-top"
+        data-hoverable
+        data-magnetic
+      >
+        <svg class="progress-circle" viewBox="-1 -1 34 34" aria-hidden="true">
+          <circle cx="16" cy="16" r="15.9155" class="progress-circle-bg" />
+          <circle
+            cx="16"
+            cy="16"
+            r="15.9155"
+            class="progress-circle-bar"
+            id="progress-circle-bar"
+          />
+        </svg>
+        <a href="#home" aria-label="Scroll back to top">
+          <i class="fa-solid fa-angle-up"></i>
+        </a>
+      </div>
+    </footer>
+
+    
+    <div
+      id="portfolio-modal"
+      class="portfolio-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+      aria-hidden="true"
+    >
+      <div class="modal-content" data-hoverable>
+        <button
+          id="modal-close-btn"
+          class="modal-close-btn"
+          type="button"
+          aria-label="Close project details"
+          data-hoverable
+          data-magnetic
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="modal-body">
+          <div class="modal-image-container">
+            <img
+              id="modal-img"
+              src="https://placehold.co/600x400/1a1f2c/30C5FF?text=Project+1&font=inter"
+              alt="Project preview"
+              loading="lazy"
+            />
+          </div>
+          <div class="modal-details-container">
+            <h2 id="modal-title">Project Title</h2>
+            <div class="modal-tech-tags" id="modal-tech-tags"></div>
+            <p id="modal-desc">Project description...</p>
+            <h3>Key Features</h3>
+            <ul id="modal-features">
+              <li>Feature one</li>
+              <li>Feature two</li>
+            </ul>
+            <div class="modal-links">
+              <a
+                id="modal-live-link"
+                href="#"
+                class="btn"
+                target="_blank"
+                rel="noreferrer"
+                data-hoverable
+                data-magnetic
+                >Live Demo
+                <i class="fa-solid fa-arrow-up-right-from-square"></i
+              ></a>
+              <a
+                id="modal-repo-link"
+                href="#"
+                class="btn btn-secondary"
+                target="_blank"
+                rel="noreferrer"
+                data-hoverable
+                data-magnetic
+                >View Code <i class="fa-brands fa-github"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"
+      xintegrity="sha512-R9mbDs1rOKjDVELsBPL2LOKx/lA/m/h9bGNGReSRkyN3vY/S0Q0T/qCsS/vSKSFdsqdh8I/Gk91jM7Ca3QG/MA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <script src="main.js"></script>
+  </body>
+</html>

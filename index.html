@@ -486,71 +486,53 @@
       </section>
 
       
-<section class="services" id="services" aria-labelledby="services-heading">
-  <h2 class="heading" id="services-heading">My <span>Services</span></h2>
-  <div class="services-container">
-    
-    <div class="services-card-container" tabindex="0">
-      <div class="services-card">
-        <div class="services-card-front glass-card">
-          <i class="fa-solid fa-server" aria-hidden="true"></i>
+    <section class="services" id="services" aria-labelledby="services-heading">
+      <h2 class="heading" id="services-heading">My <span>Services</span></h2>
+      <div class="services-container">
+        
+        <div class="services-box glass-card" data-tilt data-hoverable>
+          <div class="service-icon">
+            <i class="fa-solid fa-server" aria-hidden="true"></i>
+          </div>
           <h3>Backend Development</h3>
-          <p>Robust, scalable, and secure server-side logic.</p>
+          <p>Robust, scalable, and secure server-side logic built with modern frameworks.</p>
+          <div class="service-tags">
+            <span>C# & .NET Core</span>
+            <span>RESTful APIs</span>
+            <span>SQL Server</span>
+          </div>
         </div>
-        <div class="services-card-back glass-card">
-          <h4>Key Technologies</h4>
-          <ul>
-            <li>C# & .NET Core</li>
-            <li>RESTful API Design</li>
-            <li>SQL Server & MongoDB</li>
-            <li>Authentication & Security</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    
-    <div class="services-card-container" tabindex="0">
-      <div class="services-card">
-        <div class="services-card-front glass-card">
-          <i class="fa-solid fa-code" aria-hidden="true"></i>
+        
+        <div class="services-box glass-card" data-tilt data-hoverable>
+          <div class="service-icon">
+            <i class="fa-solid fa-code" aria-hidden="true"></i>
+          </div>
           <h3>Web Development</h3>
-          <p>Modern, responsive, and blazing-fast websites.</p>
+          <p>Modern, responsive, and blazing-fast websites that look great on any device.</p>
+          <div class="service-tags">
+            <span>React.js</span>
+            <span>JavaScript</span>
+            <span>HTML5/CSS3</span>
+          </div>
         </div>
-        <div class="services-card-back glass-card">
-          <h4>Key Technologies</h4>
-          <ul>
-            <li>HTML5 & CSS3</li>
-            <li>JavaScript (ES6+)</li>
-            <li>React.js</li>
-            <li>Responsive Design</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-    
-    <div class="services-card-container" tabindex="0">
-      <div class="services-card">
-        <div class="services-card-front glass-card">
-          <i class="fa-solid fa-palette" aria-hidden="true"></i>
+        
+        <div class="services-box glass-card" data-tilt data-hoverable>
+          <div class="service-icon">
+            <i class="fa-solid fa-palette" aria-hidden="true"></i>
+          </div>
           <h3>UI / UX Design</h3>
-          <p>User-centric designs that are both beautiful and intuitive.</p>
+          <p>User-centric designs that are both beautiful and intuitive to use.</p>
+          <div class="service-tags">
+            <span>Figma</span>
+            <span>Prototyping</span>
+            <span>Accessibility</span>
+          </div>
         </div>
-        <div class="services-card-back glass-card">
-          <h4>Key Tools</h4>
-          <ul>
-            <li>Figma</li>
-            <li>User-Flow Mapping</li>
-            <li>Prototyping & Wireframing</li>
-            <li>Accessibility Standards</li>
-          </ul>
-        </div>
-      </div>
-    </div>
 
-  </div> 
-</section>
+      </div> 
+    </section>
 
 
       
@@ -782,7 +764,7 @@
         </div>
       </section>
 
-      
+      <!-- CASE STUDIES -->
       <section
         class="case-studies"
         id="case-studies"
@@ -823,7 +805,7 @@
         </div>
       </section>
 
-      
+      <!-- EDUCATION/JOURNEY -->
       <section
         class="education"
         id="education"
@@ -842,8 +824,20 @@
               focusing on API development and database management.
             </p>
           </article>
-
           <article class="education-box glass-card" data-hoverable>
+            <i
+              class="fa-solid fa-briefcase education-icon"
+              aria-hidden="true"
+            ></i>
+            <span class="education-year">Jan 2025 - June 2025</span>
+            <h3>Software Developer Intern</h3>
+            <h4>Techoctanet Services Pvt Ltd</h4>
+            <p>
+              Implemented Advanced Data Structures & Algorithms. Built responsive front-ends using HTML, CSS, JS.
+            </p>
+          </article>
+
+          <article class="education-box journey-hidden glass-card" data-hoverable>
             <i
               class="fa-solid fa-graduation-cap education-icon"
               aria-hidden="true"
@@ -905,7 +899,7 @@
         </div>
       </section>
 
-      
+      <!-- PROCESS -->
       <section class="process" id="process" aria-labelledby="process-heading">
         <h2 class="heading" id="process-heading">How <span>I Work</span></h2>
         <div class="process-grid">
@@ -935,7 +929,7 @@
         </div>
       </section>
 
-      
+      <!-- TESTIMONIALS -->
       <section
         class="testimonial"
         id="testimonial"
@@ -995,7 +989,7 @@
         </div>
       </section>
 
-      
+      <!-- FAQ -->
       <section class="faq" id="faq" aria-labelledby="faq-heading">
         <h2 class="heading" id="faq-heading">Quick <span>Answers</span></h2>
         <div class="faq-grid">
@@ -1023,7 +1017,7 @@
         </div>
       </section>
 
-      
+      <!-- CONTACT -->
       <section class="contact" id="contact" aria-labelledby="contact-heading">
         <h2 class="heading" id="contact-heading">Let's <span>Talk</span></h2>
 
@@ -1163,7 +1157,7 @@
         </div>
       </section>
 
-      
+      <!-- HIRE ME -->
       <section class="hire-me" id="hire-me">
         <div class="hire-me-content glass-card" data-hoverable>
           <h2 class="heading">Available for <span>Work</span></h2>
@@ -1178,7 +1172,7 @@
       </section>
     </main>
 
-    
+    <!-- FOOTER -->
     <footer class="footer" role="contentinfo">
       <div class="footer-text">
         <p>© 2025 Sani Kumar. All Rights Reserved.</p>
@@ -1206,7 +1200,7 @@
       </div>
     </footer>
 
-    
+    <!-- PORTFOLIO MODAL -->
     <div
       id="portfolio-modal"
       class="portfolio-modal"
@@ -1272,7 +1266,7 @@
       </div>
     </div>
 
-    
+    <!-- External Scripts -->
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
@@ -1283,6 +1277,7 @@
       referrerpolicy="no-referrer"
     ></script>
 
+    <!-- Main JS -->
     <script src="main.js"></script>
   </body>
 </html>

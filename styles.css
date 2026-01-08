@@ -1,7 +1,35 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
+/* FIXED: SOCIAL MEDIA POSITION & VISIBILITY */
+.social-media {
+  margin-top: 2rem;
+  position: relative;
+  z-index: 50; 
+  margin-bottom: 2rem; /* Reduced from 4rem to 2rem to decrease gap */
+}
 
 * {
-  margin: 0;
+/* FIXED: HOME STATS - Gap Reduced for Desktop */
+.home-stats {
+  position: absolute;
+  /* Bottom position adjust kiya taaki Links ke paas rahe par chipke nahi */
+  bottom: 10rem; 
+  left: 9%;
+  right: 9%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(10, 22, 18, 0.6);
+  border-radius: 2rem;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: 10;
+  
+  /* Removed transform and huge margin causing the big gap */
+  transform: none; 
+  margin-top: 0;
+}
+
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
@@ -14,12 +42,12 @@
 :root {
   
   --bg-color: #0A1612;
-  --snd-bg-color: #142B24;
+  --snd-bg-color: rgba(20, 43, 36, 0.7); /* Made transparent for bg image */
   --primary-color: #4CAF50;
   --secondary-color: #4DD0E1;
   --text-color: #A5D6A7;
   --text-color-dark: #75928C;
-  --card-bg: rgba(20, 43, 36, 0.85);
+  --card-bg: rgba(20, 43, 36, 0.65); /* More transparent for glass effect */
   --card-border: rgba(76, 175, 80, 0.3);
   --shadow-color: rgba(0, 0, 0, 0.35);
   --glow-color: rgba(76, 175, 80, 0.5);
@@ -30,7 +58,7 @@
   --lm-snd-bg-color: #ffffff;
   --lm-text-color: #212121;
   --lm-text-color-dark: #666;
-  --lm-card-bg: rgba(255, 255, 255, 0.95);
+  --lm-card-bg: rgba(255, 255, 255, 0.85);
   --lm-card-border: rgba(0, 0, 0, 0.08);
   --lm-shadow-dark: rgba(0, 0, 0, 0.12);
   --lm-shadow-light: rgba(255, 255, 255, 0.9);
@@ -50,12 +78,13 @@ body.light-mode {
   --glow-color: var(--lm-glow-color);
 }
 
+/* CURVE DESIGN UPDATE: Increased border-radius */
 .glass-card {
   background: var(--card-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
-  border-radius: 1.6rem;
+  border-radius: 2.5rem; /* Increased Curve */
   box-shadow: 0 8px 28px 0 var(--shadow-color);
   transition: 0.3s ease;
 }
@@ -68,8 +97,8 @@ body.light-mode {
 
 
 .inset-panel {
-  background: var(--bg-color);
-  border-radius: 1.2rem;
+  background: var(--card-bg); 
+  border-radius: 2rem; /* Increased Curve */
   box-shadow: inset 5px 5px 10px var(--shadow-dark),
     inset -5px -5px 10px var(--shadow-light);
 }
@@ -84,7 +113,13 @@ html {
 }
 
 body {
-  background: var(--bg-color);
+  /* GLOBAL BACKGROUND DESIGN: Mesh Gradient applied to Body */
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(76, 175, 80, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(77, 208, 225, 0.12) 0%, transparent 40%),
+    var(--bg-color);
+  background-attachment: fixed; /* Ensures background stays while scrolling */
+  
   color: var(--text-color);
   transition: background 0.3s ease, color 0.3s ease;
   overflow-x: hidden;
@@ -105,12 +140,13 @@ body {
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-color);
+  background: rgba(10, 22, 18, 0.8);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--primary-color);
   border-radius: 10px;
-  border: 2px solid var(--bg-color);
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--secondary-color);
@@ -141,13 +177,14 @@ section {
   -webkit-text-fill-color: transparent;
 }
 
+/* BUTTONS: Pill shaped (Kept modern curve) */
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.8rem;
   padding: 1.2rem 3rem;
   background: var(--primary-color);
-  border-radius: 0.8rem;
+  border-radius: 50px;
   box-shadow: 0 4px 15px var(--glow-color);
   font-size: 1.6rem;
   color: #ffffff;
@@ -185,10 +222,10 @@ section {
   font-weight: 600;
   color: var(--text-color-dark);
   border: 1px solid var(--card-border);
-  border-radius: 3rem;
+  border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.3); 
 }
 .filter-btn:hover {
   border-color: var(--secondary-color);
@@ -259,6 +296,7 @@ section {
 }
 
 
+/* BACKGROUND DESIGN (AURORA BLOBS) */
 .aurora-container {
   position: fixed;
   inset: 0;
@@ -276,8 +314,8 @@ section {
   min-width: 400px;
   min-height: 400px;
   border-radius: 50%;
-  opacity: 0.2;
-  filter: blur(100px);
+  opacity: 0.4; /* Visible aurora effect */
+  filter: blur(80px);
   will-change: transform, opacity;
   transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -462,6 +500,297 @@ body.light-mode .header.sticky {
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  margin-left: 6rem; /* FIXED: Increased margin to push sunlight picture to side */
+}
+
+.dark-mode-toggle-btn,
+.menu-icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--text-color);
+  font-size: 2.4rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.dark-mode-toggle-btn:hover,
+.menu-icon-btn:hover {
+  color: var(--primary-color);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.menu-icon-btn {
+  font-size: 3.2rem;
+  display: none;
+}
+
+#darkMode-icon.glow {
+  animation: glowEffect 0.6s ease-out;
+}
+@keyframes glowEffect {
+  0% {
+    text-shadow: 0 0 8px var(--glow-color), 0 0 15px var(--glow-color);
+    transform: scale(1.2);
+  }
+  100% {
+    text-shadow: none;
+    transform: scale(1);
+  }
+}
+
+/* HOME SECTION - OPTIMIZED FOR DESKTOP VIEW */
+.home {
+  display: flex;
+  justify-content: space-between; /* Pushes content and image apart */
+  align-items: center;
+  gap: 5rem;
+  /* Reverted to 20rem to ensure no overlap and clean look as per original fix */
+  padding: 20rem 9% 12rem; 
+  min-height: calc(100vh - 6rem);
+  
+  /* Reset background to transparent so Body background shows */
+  background: transparent;
+  
+  position: relative;
+  z-index: 10;
+  
+  /* Constraint max width on large screens to keep design tight */
+  max-width: 1400px;
+  margin: 0 auto; 
+}
+
+/* FIXED: Z-INDEX INCREASED TO SHOW OVER STAT BOX */
+.home-content {
+  flex: 1;
+  max-width: 650px;
+  position: relative;
+  z-index: 20; /* Higher than .home-stats */
+}
+
+.eyebrow {
+  font-size: 1.6rem; /* Slightly larger */
+  text-transform: uppercase;
+  letter-spacing: 0.35rem; /* Increased letter spacing */
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem; /* More space below eyebrow */
+  font-weight: 600;
+}
+
+.home-content h3 {
+  font-size: 3.4rem;
+  font-weight: 600;
+  color: var(--text-color-dark);
+  line-height: 1.4; /* Better line spacing */
+}
+.home-content h3:nth-of-type(2) {
+  margin-bottom: 2.5rem; /* More space below the second h3 */
+}
+
+.home-title {
+  font-size: 6rem; /* Slightly larger title */
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-color);
+  background: linear-gradient(
+    90deg,
+    var(--text-color) 70%,
+    var(--primary-color) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 5s ease-in-out infinite;
+  margin-bottom: 1rem; /* Added margin below title */
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.home-content p {
+  font-size: 1.8rem; /* Slightly larger readable text */
+  line-height: 1.9; /* INCREASED LINE SPACING */
+  color: var(--text-color-dark);
+  margin-top: 2rem;
+  margin-bottom: 3rem; /* Space before buttons */
+}
+
+.home-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem; /* More space between buttons */
+  margin: 3rem 0 2rem;
+}
+
+/* FIXED: SOCIAL MEDIA POSITION & VISIBILITY */
+.social-media {
+  margin-top: 3rem; /* Space above social icons */
+  position: relative;
+  z-index: 50; /* Top most priority */
+}
+
+.social-media a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 5rem; /* Slightly larger touch targets */
+  height: 5rem;
+  background: rgba(255, 255, 255, 0.03); /* Subtle background */
+  border: 1px solid var(--card-border); /* Thinner border */
+  border-radius: 50%; /* RESTORED CIRCLE */
+  font-size: 2.4rem;
+  color: var(--text-color-dark);
+  margin: 0 1.5rem 0 0; /* Adjusted margins */
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+  position: relative;
+  z-index: 51;
+}
+
+.social-media a:hover {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 2.5rem var(--glow-color);
+  transform: translateY(-5px) rotate(10deg); /* Added subtle rotation on hover */
+}
+
+.home-img-3d-wrapper {
+  flex: 1;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  display: flex;
+  justify-content: flex-end; /* Align image to right on desktop */
+  z-index: 5;
+}
+
+.home-img {
+  position: relative;
+  transform: translateZ(20px);
+}
+.home-img img {
+  width: 32vw; /* Larger image for desktop impact */
+  min-width: 300px;
+  max-width: 450px;
+  animation: floatImage 5s ease-in-out infinite; /* Slower, smoother float */
+  border-radius: 50%; /* RESTORED CIRCLE */
+  border: 4px solid rgba(76, 175, 80, 0.5); /* Semi-transparent border */
+  box-shadow: 0 0 60px var(--glow-color); /* Stronger glow */
+  position: relative;
+  z-index: 1;
+}
+
+/* Enhanced background glow behind image */
+.home-img::after {
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  border-radius: 50%; /* RESTORED CIRCLE */
+  background: radial-gradient(circle, var(--primary-color), transparent 70%);
+  top: -5%;
+  left: -5%;
+  filter: blur(60px);
+  opacity: 0.25;
+  z-index: 0;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.2; }
+  100% { transform: scale(1.1); opacity: 0.3; }
+}
+
+@keyframes floatImage {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* FIXED: HOME STATS "NICHE KARNA HAI" */
+.home-stats {
+  position: absolute;
+  /* Use negative value to push it below the fold or further down */
+  bottom: 8rem; 
+  left: 9%;
+  right: 9%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem; /* Reverted padding to 2rem as requested */
+  background: rgba(10, 22, 18, 0.6); /* Slightly darker background for readability */
+  border-radius: 2rem;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  backdrop-filter: blur(10px);
+  z-index: 10; /* Lower than content */
+  margin-top: 10rem; /* Increased margin top to push it down */
+  transform: translateY(100%); /* Push completely below the home section content */
+}
+
+/* Reverted text styles for stat-box */
+.stat-box {
+  padding: 2rem; /* Reverted to 2rem */
+  text-align: center;
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease;
+}
+.stat-box:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.03);
+}
+
+.stat-box h3 {
+  font-size: 3.4rem; /* Reverted to 3.4rem */
+  font-weight: 700; /* Reverted weight */
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+.stat-box p {
+  font-size: 1.5rem;
+  color: var(--text-color-dark);
+  line-height: 1.4;
+  margin: 0; /* Reset margin for cleaner look */
+}
+
+.portfolio-links {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.portfolio-links a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 2rem;
+  transition: 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.portfolio-links a:hover {
+  background: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .dark-mode-toggle-btn,
@@ -503,11 +832,209 @@ body.light-mode .header.sticky {
 
 .home {
   display: flex;
+  justify-content: space-between; /*
+  align-items: center;
+  gap: 5rem;
+  padding: 20rem 9% 12rem; 
+  min-height: calc(100vh - 6rem);
+  
+  background: transparent;
+  
+  position: relative;
+  z-index: 10;
+  
+  max-width: 1400px;
+  margin: 0 auto; 
+}
+
+.home-content {
+  flex: 1;
+  max-width: 650px; 
+}
+
+.eyebrow {
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.35rem; 
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.home-content h3 {
+  font-size: 3.4rem;
+  font-weight: 600;
+  color: var(--text-color-dark);
+  line-height: 1.4; /* Better line spacing */
+}
+.home-content h3:nth-of-type(2) {
+  margin-bottom: 2.5rem; 
+}
+
+.home-title {
+  font-size: 6rem; 
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--text-color);
+  background: linear-gradient(
+    90deg,
+    var(--text-color) 70%,
+    var(--primary-color) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 5s ease-in-out infinite;
+  margin-bottom: 1rem; 
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.home-content p {
+  font-size: 1.8rem; 
+  line-height: 1.9; 
+  color: var(--text-color-dark);
+  margin-top: 2rem;
+  margin-bottom: 3rem; 
+}
+
+.home-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2rem; 
+  margin: 3rem 0 2rem;
+}
+
+.social-media {
+  margin-top: 3rem; 
+}
+
+.social-media a {
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: 4rem;
-  padding: 12rem 9% 12rem;
-  min-height: calc(100vh - 6rem);
+  width: 5rem; 
+  height: 5rem;
+  background: rgba(255, 255, 255, 0.03); 
+  border: 1px solid var(--card-border); 
+  border-radius: 50%; 
+  font-size: 2.4rem;
+  color: var(--text-color-dark);
+  margin: 0 1.5rem 0 0;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(5px);
+}
+
+.social-media a:hover {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 2.5rem var(--glow-color);
+  transform: translateY(-5px) rotate(10deg); 
+}
+
+.home-img-3d-wrapper {
+  flex: 1;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
+  display: flex;
+  justify-content: flex-end; 
+  z-index: 5;
+}
+
+.home-img {
+  position: relative;
+  transform: translateZ(20px);
+}
+.home-img img {
+  width: 32vw;
+  min-width: 300px;
+  max-width: 450px;
+  animation: floatImage 5s ease-in-out infinite;
+  border-radius: 50%; 
+  border: 4px solid rgba(76, 175, 80, 0.5); 
+  box-shadow: 0 0 60px var(--glow-color); 
+  position: relative;
+  z-index: 1;
+}
+
+.home-img::after {
+  content: "";
+  position: absolute;
+  width: 110%;
+  height: 110%;
+  border-radius: 50%; 
+  background: radial-gradient(circle, var(--primary-color), transparent 70%);
+  top: -5%;
+  left: -5%;
+  filter: blur(60px);
+  opacity: 0.25;
+  z-index: 0;
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.9); opacity: 0.2; }
+  100% { transform: scale(1.1); opacity: 0.3; }
+}
+
+@keyframes floatImage {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.home-stats {
+  position: absolute;
+  bottom: 5rem; 
+  left: 9%;
+  right: 9%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  background: rgba(10, 22, 18, 0.6); 
+  border-radius: 2rem;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.stat-box {
+  padding: 1rem;
+  text-align: center;
+  border-radius: 1.5rem;
+  transition: transform 0.3s ease;
+}
+.stat-box:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.03);
+}
+
+.stat-box h3 {
+  font-size: 3.6rem;
+  font-weight: 800;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+.stat-box p {
+  font-size: 1.5rem;
+  color: var(--text-color-dark);
+  line-height: 1.4;
+  margin: 0; /* Reset margin for cleaner look */
 }
 
 .home-content {
@@ -579,7 +1106,7 @@ body.light-mode .header.sticky {
   height: 4.5rem;
   background: transparent;
   border: 0.2rem solid var(--card-border);
-  border-radius: 50%;
+  border-radius: 50%; /* RESTORED CIRCLE */
   font-size: 2.2rem;
   color: var(--text-color-dark);
   margin: 2rem 1.2rem 0 0;
@@ -610,7 +1137,7 @@ body.light-mode .header.sticky {
   min-width: 250px;
   max-width: 340px;
   animation: floatImage 4s ease-in-out infinite;
-  border-radius: 50%;
+  border-radius: 50%; /* RESTORED CIRCLE */
   border: 5px solid var(--primary-color);
   box-shadow: 0 0 40px var(--glow-color);
   position: relative;
@@ -622,7 +1149,7 @@ body.light-mode .header.sticky {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  border-radius: 50%; /* RESTORED CIRCLE */
   background: var(--primary-color);
   top: 0;
   left: 0;
@@ -647,17 +1174,18 @@ body.light-mode .header.sticky {
 
 .home-stats {
   position: absolute;
-  bottom: 0;
+  bottom: 10rem;
   left: 9%;
   right: 9%;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1.5rem; /* Reduced gap */
+  gap: 1.5rem;
 }
 
 .stat-box {
-  padding: 1.5rem; /* Reduced padding */
+  padding: 1.5rem;
   text-align: center;
+  border-radius: 2rem;
 }
 .stat-box h3 {
   font-size: 3.4rem;
@@ -675,7 +1203,7 @@ body.light-mode .header.sticky {
   justify-content: center;
   align-items: center;
   gap: 8rem;
-  background: var(--bg-color);
+  background: transparent; /* Made transparent for bg image */
   flex-wrap: wrap;
 }
 
@@ -683,7 +1211,7 @@ body.light-mode .header.sticky {
   width: 30vw;
   min-width: 250px;
   max-width: 360px;
-  border-radius: 2rem;
+  border-radius: 3rem; /* Enhanced Curve */
   box-shadow: 0 10px 30px var(--shadow-color);
 }
 
@@ -703,8 +1231,8 @@ body.light-mode .header.sticky {
   display: flex;
   gap: 1rem;
   margin-bottom: 2.5rem;
-  background: var(--bg-color);
-  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.2); /* Semi-transparent */
+  border-radius: 2rem; /* Curve Design */
   padding: 0.5rem;
   border: 1px solid var(--card-border);
 }
@@ -716,7 +1244,7 @@ body.light-mode .header.sticky {
   font-weight: 600;
   background: transparent;
   color: var(--text-color-dark);
-  border-radius: 0.8rem;
+  border-radius: 1.5rem; /* Curve Design */
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -732,7 +1260,7 @@ body.light-mode .header.sticky {
 
 .about-text-content {
   position: relative;
-  min-height: 150px;
+  min-height: 180px;
 }
 .about-text {
   font-size: 1.6rem;
@@ -750,7 +1278,7 @@ body.light-mode .header.sticky {
 }
 
 .github {
-  background: var(--bg-color);
+  background: transparent; /* Made transparent for bg image */
 }
 
 .github-stats-container {
@@ -763,6 +1291,7 @@ body.light-mode .header.sticky {
 .github-stat-card {
   padding: 2.5rem;
   text-align: center;
+  border-radius: 2.5rem; /* Curve Design */
 }
 .github-stat-card i {
   font-size: 5rem;
@@ -822,7 +1351,7 @@ body.light-mode .header.sticky {
   position: relative;
   flex-grow: 1;
   max-width: 400px;
-  border-radius: 1.2rem;
+  border-radius: 2rem; /* Curve Design */
   background: var(--card-bg);
   border: 1px solid var(--card-border);
 }
@@ -840,7 +1369,7 @@ body.light-mode .header.sticky {
   background: transparent;
   color: var(--text-color);
   font-size: 1.6rem;
-  border-radius: 0.8rem;
+  border-radius: 2rem; /* Curve Design */
 }
 .github-search-wrapper:focus-within {
   border-color: var(--primary-color);
@@ -860,6 +1389,7 @@ body.light-mode .header.sticky {
   flex-direction: column;
   justify-content: space-between;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  border-radius: 2.5rem; /* Curve Design */
 }
 .github-repo-card h4 {
   font-size: 2rem;
@@ -902,6 +1432,7 @@ body.light-mode .header.sticky {
   padding: 4rem;
   text-align: center;
   border: 1px solid var(--secondary-color);
+  border-radius: 2rem; /* Curve Design */
 }
 .github-error-card i {
   font-size: 5rem;
@@ -924,7 +1455,7 @@ body.light-mode .header.sticky {
 }
 
 .skills {
-  background: var(--snd-bg-color);
+  background: transparent; /* Made transparent for bg image */
 }
 
 .skills-toggle-buttons {
@@ -997,6 +1528,7 @@ body.light-mode .header.sticky {
 
 .skills-category-box {
   padding: 2.5rem 3rem;
+  border-radius: 2.5rem; /* Curve Design */
 }
 .skills-category-box h3 {
   font-size: 2.2rem;
@@ -1042,13 +1574,14 @@ body.light-mode .header.sticky {
 }
 .toolbox-strip span {
   padding: 0.6rem 1.4rem;
-  border-radius: 999px;
+  border-radius: 50px; /* Curve Design */
   border: 1px solid var(--card-border);
   background: rgba(0, 0, 0, 0.15);
 }
 
+/* SERVICES SECTION (Modern Card Style) */
 .services {
-  background: var(--bg-color);
+  background: transparent; /* Made transparent for bg image */
 }
 
 .services-container {
@@ -1058,150 +1591,91 @@ body.light-mode .header.sticky {
   padding: 2rem;
 }
 
-.services-card-container {
-  perspective: 1000px;
-  height: 320px;
-  position: relative;
-  cursor: pointer;
-  
-  touch-action: manipulation;
-}
-
-.services-card {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.services-card-container:hover .services-card {
-  transform: rotateY(180deg);
-}
-
-
-.services-card-container:active .services-card,
-.services-card-container:focus-within .services-card {
-  transform: rotateY(180deg);
-}
-
-.services-card-front,
-.services-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+/* REPLACED FLIP LOGIC WITH MODERN STATIC CARDS */
+.services-box {
+  padding: 3rem 2.5rem;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  padding: 3rem;
+  border-radius: 3rem; 
   background: var(--card-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--card-border);
-  border-radius: 1.6rem;
   box-shadow: 0 8px 32px 0 var(--shadow-color);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-.services-card-front i {
-  font-size: 7rem;
+/* Hover Lift Effect */
+.services-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px var(--glow-color);
+  border-color: var(--primary-color);
+}
+
+.service-icon {
+  font-size: 5rem;
   color: var(--primary-color);
   margin-bottom: 2rem;
-  text-shadow: 0 0 15px var(--glow-color);
+  background: rgba(76, 175, 80, 0.1);
+  width: 9rem;
+  height: 9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: 0.3s ease;
 }
 
-.services-card-front h3 {
-  font-size: 2.6rem;
-  margin-bottom: 1rem;
-}
-
-.services-card-front p {
-  font-size: 1.6rem;
-  line-height: 1.6;
-  color: var(--text-color-dark);
-}
-
-.services-card-back {
-  transform: rotateY(180deg);
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+.services-box:hover .service-icon {
+  background: var(--primary-color);
   color: #ffffff;
-  align-items: flex-start;
-  text-align: left;
+  box-shadow: 0 0 20px var(--glow-color);
 }
 
-.services-card-back h4 {
-  font-size: 2.2rem;
+.services-box h3 {
+  font-size: 2.4rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  border-bottom: 2px solid #ffffff;
-  padding-bottom: 0.5rem;
+  color: var(--text-color);
 }
 
-.services-card-back ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.services-card-back ul li {
+.services-box p {
   font-size: 1.6rem;
-  line-height: 1.8;
-  margin-bottom: 0.5rem;
+  color: var(--text-color-dark);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
 }
 
-.services-card-back ul li::before {
-  content: "✓";
-  margin-right: 1rem;
-  font-weight: 700;
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
 }
 
-@media (hover: none) and (pointer: coarse) {
-  .services-card-container {
-    cursor: default;
-  }
-  
-  
-  .services-card-container:active .services-card {
-    transform: rotateY(180deg);
-  }
+.service-tags span {
+  font-size: 1.3rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.5rem 1.2rem;
+  border-radius: 2rem;
+  color: var(--secondary-color);
+  border: 1px solid rgba(77, 208, 225, 0.2);
 }
 
 @media (max-width: 768px) {
   .services-container {
     grid-template-columns: 1fr;
     gap: 2rem;
-    padding: 1rem;
-  }
-  
-  .services-card-container {
-    height: 280px;
-  }
-  
-  .services-card-front, .services-card-back {
-    padding: 2rem 1.5rem;
-  }
-  
-  .services-card-front i {
-    font-size: 5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .services-card-front h3 {
-    font-size: 2.2rem;
-  }
-  
-  .services-card-front p {
-    font-size: 1.4rem;
   }
 }
 
-
-
-
 .portfolio {
-  background: var(--snd-bg-color);
+  background: transparent; /* Made transparent for bg image */
 }
 
 .portfolio-filter-buttons {
@@ -1229,6 +1703,7 @@ body.light-mode .header.sticky {
   overflow: hidden;
   max-height: 1000px;
   position: relative;
+  border-radius: 2.5rem; /* Curve Design */
 }
 
 
@@ -1247,7 +1722,7 @@ body.light-mode .header.sticky {
 .portfolio-box-spotlight {
   position: absolute;
   inset: 0;
-  border-radius: 1.6rem;
+  border-radius: 2.5rem; /* Curve Design */
   z-index: 2;
   opacity: 0;
   transition: opacity 0.4s ease;
@@ -1265,7 +1740,7 @@ body.light-mode .header.sticky {
 
 .portfolio-box-inner {
   position: relative;
-  border-radius: 1.6rem;
+  border-radius: 2.5rem; /* Curve Design */
   box-shadow: 0 5px 15px var(--shadow-color);
   overflow: hidden;
   display: flex;
@@ -1357,6 +1832,7 @@ body.light-mode .header.sticky {
 
 .case-card {
   padding: 2.6rem 3rem;
+  border-radius: 2.5rem; /* Curve Design */
 }
 .case-card h3 {
   font-size: 2.2rem;
@@ -1426,6 +1902,7 @@ body.light-mode .header.sticky {
   width: 45%;
   margin-bottom: 3rem;
   z-index: 2;
+  border-radius: 2.5rem; /* Curve Design */
 }
 
 .education-icon {
@@ -1520,7 +1997,7 @@ body.light-mode .header.sticky {
 }
 
 .process {
-  background: var(--snd-bg-color);
+  background: transparent; /* Made transparent for bg image */
 }
 
 .process-grid {
@@ -1534,6 +2011,7 @@ body.light-mode .header.sticky {
 .process-step {
   padding: 2.6rem 2.4rem;
   position: relative;
+  border-radius: 2.5rem; /* Curve Design */
 }
 .process-step-number {
   position: absolute;
@@ -1554,7 +2032,7 @@ body.light-mode .header.sticky {
 }
 
 .testimonial {
-  background: var(--snd-bg-color);
+  background: transparent; /* Made transparent for bg image */
   padding-bottom: 8rem;
 }
 
@@ -1577,6 +2055,7 @@ body.light-mode .header.sticky {
   padding: 3rem;
   min-height: 320px;
   justify-content: center;
+  border-radius: 2.5rem; /* Curve Design */
 }
 
 .testimonial-box img {
@@ -1629,6 +2108,7 @@ body.light-mode .header.sticky {
 
 .faq-item {
   padding: 2.4rem 2.8rem;
+  border-radius: 2.5rem; /* Curve Design */
 }
 .faq-item h3 {
   font-size: 2rem;
@@ -1648,14 +2128,15 @@ body.light-mode .header.sticky {
   display: flex;
   flex-wrap: wrap;
   gap: 5rem;
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .contact-info {
   flex: 1 1 32rem;
   padding: 3rem;
+  border-radius: 2.5rem; /* Curve Design */
 }
 .contact-info h3 {
   font-size: 3rem;
@@ -1702,10 +2183,11 @@ body.light-mode .header.sticky {
 
 .contact-form-inset {
   flex: 2 1 48rem;
-  padding: 4rem 3rem;
+  padding: 5rem 7rem;
   background: var(--bg-color);
   box-shadow: inset 7px 7px 15px var(--shadow-dark),
     inset -7px -7px 15px var(--shadow-light);
+  border-radius: 3.5rem; /* Curve Design */
 }
 body.light-mode .contact-form-inset {
   box-shadow: inset 7px 7px 15px var(--lm-shadow-dark),
@@ -1716,7 +2198,7 @@ body.light-mode .contact-form-inset {
   position: relative;
   width: 100%;
   margin-bottom: 2.5rem;
-  border-radius: 1rem;
+  border-radius: 1.5rem; /* Curve Design */
   box-shadow: inset 5px 5px 10px var(--shadow-dark),
     inset -5px -5px 10px var(--shadow-light);
 }
@@ -1742,7 +2224,7 @@ body.light-mode .contact-form .input-group {
   font-size: 1.6rem;
   color: var(--text-color);
   background: transparent;
-  border-radius: 1rem;
+  border-radius: 1.5rem; /* Curve Design */
   outline: none;
   border: none;
   transition: all 0.3s ease;
@@ -1797,6 +2279,7 @@ body.light-mode .contact-form .input-group {
   justify-content: center;
   text-align: center;
   gap: 2rem;
+  border-radius: 2.5rem; /* Curve Design */
 }
 .hire-me-content h2 {
   margin-bottom: 0;
@@ -1907,7 +2390,7 @@ body.light-mode .contact-form .input-group {
   overflow-y: auto;
   position: relative;
   padding: 0;
-  border-radius: 1.6rem;
+  border-radius: 2.5rem; /* Curve Design */
   background: var(--bg-color);
   border: 1px solid var(--card-border);
   box-shadow: 0 10px 50px var(--shadow-color);
@@ -1949,7 +2432,7 @@ body.light-mode .contact-form .input-group {
   width: 100%;
   height: 400px;
   overflow: hidden;
-  border-radius: 1.6rem 1.6rem 0 0;
+  border-radius: 2.5rem 2.5rem 0 0; /* Curve Design */
 }
 .modal-image-container img {
   width: 100%;
@@ -1977,7 +2460,7 @@ body.light-mode .contact-form .input-group {
   border: 1px solid var(--card-border);
   color: var(--primary-color);
   padding: 0.5rem 1.5rem;
-  border-radius: 2rem;
+  border-radius: 2rem; /* Curve Design */
   font-size: 1.4rem;
   font-weight: 500;
 }
@@ -2057,10 +2540,7 @@ body.light-mode .contact-form .input-group {
   .home-img img {
     width: 260px;
   }
-  .home-stats {
-    position: static;
-    margin-top: 3.5rem;
-  }
+ 
 
   .about {
     flex-direction: column;

@@ -1,4 +1,3 @@
-// Utility functions
 const throttle = (func, limit = 16) => {
   let inThrottle = false;
   return function(...args) {
@@ -22,7 +21,6 @@ const debounce = (func, delay = 250) => {
   };
 };
 
-// Global cursor elements and desktop detection for re-initialization
 const cursorDot = document.querySelector("[data-cursor-dot]");
 const cursorOutline = document.querySelector("[data-cursor-outline]");
 const isDesktop = window.matchMedia("(pointer: fine)").matches && 
@@ -47,7 +45,6 @@ function reInitDynamicInteractions() {
 }
 
 
-// Preloader functionality
 const preloader = document.querySelector(".preloader");
 const prefersReducedMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"

@@ -1,17 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap");
-/* FIXED: SOCIAL MEDIA POSITION & VISIBILITY */
 .social-media {
   margin-top: 2rem;
   position: relative;
   z-index: 50; 
-  margin-bottom: 2rem; /* Reduced from 4rem to 2rem to decrease gap */
+  margin-bottom: 2rem; 
 }
 
 * {
-/* FIXED: HOME STATS - Gap Reduced for Desktop */
 .home-stats {
   position: absolute;
-  /* Bottom position adjust kiya taaki Links ke paas rahe par chipke nahi */
   bottom: 10rem; 
   left: 9%;
   right: 9%;
@@ -25,7 +22,6 @@
   backdrop-filter: blur(10px);
   z-index: 10;
   
-  /* Removed transform and huge margin causing the big gap */
   transform: none; 
   margin-top: 0;
 }

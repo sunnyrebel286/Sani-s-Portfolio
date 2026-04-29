@@ -441,11 +441,11 @@ if (window.Typed && document.querySelector(".multiple-text")) {
   new Typed(".multiple-text", {
     strings: [
       "Backend Developer",
-      "Frontend Developer",
+      /** "Frontend Developer",
       "Full-Stack Developer",
       "React Developer",
       "C# Developer",
-      ".NET Developer",
+      ".NET Developer", **/
     ],
     typeSpeed: 70,
     backSpeed: 70,

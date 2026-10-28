@@ -259,8 +259,10 @@ section {
   height: 100vh;
   background: var(--bg-color);
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 1.6rem;
   z-index: 10000;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
@@ -274,6 +276,19 @@ section {
   font-weight: 600;
   color: var(--text-color);
 }
+.preloader-spinner {
+  width: 4.4rem;
+  height: 4.4rem;
+  border: 0.4rem solid rgba(165, 214, 167, 0.25);
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: preloader-spin 0.8s linear infinite;
+}
+@keyframes preloader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .preloader-dot {
   color: var(--primary-color);
   animation: blink 1.2s infinite;
@@ -285,6 +300,11 @@ section {
   }
   50% {
     opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader-spinner {
+    animation-duration: 2s;
   }
 }
 

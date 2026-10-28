@@ -61,17 +61,10 @@ if (preloader) {
     }, 500); // Match CSS transition duration
   };
   
-  // Check if document is already complete or interactive
-  const checkLoadState = () => {
-      if (document.readyState === 'complete' || document.readyState === 'interactive') {
-          hidePreloader();
-      }
-  };
-
-  // Ensure preloader hides on full page load
-  window.addEventListener("load", hidePreloader); 
-  // Attempt to hide immediately if script loads after content is ready
-  checkLoadState();
+  window.addEventListener("load", hidePreloader);
+  if (document.readyState === "complete") {
+    hidePreloader();
+  }
 }
 
 // Aurora background blobs (interactive background effect)

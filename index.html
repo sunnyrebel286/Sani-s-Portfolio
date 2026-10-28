@@ -9,8 +9,44 @@
 
     <title>Sani Kumar | Full-Stack .NET & React Developer</title>
 
-    <link rel="preload" href="styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="styles.css"></noscript>
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      .preloader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.6rem;
+        min-height: 100vh;
+        background: #0a1612;
+        color: #a5d6a7;
+        z-index: 10000;
+      }
+
+      .preloader-spinner {
+        width: 4.4rem;
+        height: 4.4rem;
+        border: 0.4rem solid rgba(165, 214, 167, 0.25);
+        border-top-color: #4caf50;
+        border-radius: 50%;
+        animation: preloader-spin 0.8s linear infinite;
+      }
+
+      @keyframes preloader-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .preloader-spinner {
+          animation-duration: 2s;
+        }
+      }
+    </style>
     
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
@@ -86,9 +122,10 @@
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
     
-    <div class="preloader" aria-hidden="true">
+    <div class="preloader" role="status" aria-live="polite">
+      <span class="preloader-spinner" aria-hidden="true"></span>
       <div class="preloader-text">
-        Loading<span class="preloader-dot">.</span>
+        Starting your portfolio<span class="preloader-dot">.</span>
       </div>
     </div>
 
